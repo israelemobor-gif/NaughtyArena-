@@ -1,37 +1,41 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>NaughtyArena — Latest Videos</title><meta name="description"
-content="Explore the latest videos on NaughtyArena.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="theme-color" content="#0b0b0b">  <style>
+  <title>NaughtyArena | Adult Videos</title>
+
+  <meta
+    name="description"
+    content="NaughtyArena — an adults-only video website."
+  >
+
+  <meta name="theme-color" content="#10090c">
+
+  <style>
     :root {
-      --background: #0b0b0b;
-      --surface: #181818;
-      --surface-light: #242424;
-      --red: #ff3030;
+      --background: #10090c;
+      --surface: #1b1015;
+      --surface-light: #29171e;
+      --red: #e50935;
+      --red-hover: #ff234d;
       --text: #ffffff;
-      --muted: #b8b8b8;
+      --muted: #b9a9af;
+      --border: #39222b;
     }
 
     * {
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
       background: var(--background);
       color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.5;
-    }
-
-    body.locked {
-      overflow: hidden;
     }
 
     a {
@@ -44,953 +48,702 @@ content="Explore the latest videos on NaughtyArena.">
       font: inherit;
     }
 
-    button,
-    .button {
+    button {
       cursor: pointer;
     }
 
-    .container {
-      width: min(1150px, 94%);
-      margin: auto;
-    }
-
-    /* HEADER */
-
-    .site-header {
-      background: #111;
-      border-bottom: 1px solid #292929;
+    header {
+      background: #170b10;
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 20;
     }
 
     .header-inner {
-      min-height: 70px;
+      max-width: 1250px;
+      margin: auto;
+      padding: 15px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-      padding: 12px 0;
+      gap: 20px;
     }
 
     .logo {
-      color: var(--red);
       font-size: 25px;
       font-weight: 900;
       letter-spacing: -1px;
+      white-space: nowrap;
     }
 
     .logo span {
-      color: white;
-    }
-
-    .navigation {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .navigation a {
-      color: #ddd;
-      font-size: 14px;
-    }
-
-    .navigation a:hover {
       color: var(--red);
     }
 
-    /* SEARCH */
-
-    .search-area {
-      padding: 20px 0 5px;
-    }
-
-    .search-box {
+    .search {
+      width: min(420px, 100%);
       display: flex;
       gap: 8px;
     }
 
-    .search-box input {
-      width: 100%;
+    .search input {
       min-width: 0;
-      padding: 13px;
+      flex: 1;
+      padding: 11px 13px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #24151c;
       color: white;
-      background: var(--surface);
-      border: 1px solid #333;
-      border-radius: 8px;
       outline: none;
     }
 
-    .search-box input:focus {
+    .search input:focus {
       border-color: var(--red);
     }
 
-    .search-box button {
-      padding: 12px 18px;
-      color: white;
+    .search button,
+    .primary-button {
+      padding: 11px 16px;
       background: var(--red);
-      border: 0;
-      border-radius: 8px;
+      color: white;
+      border: none;
+      border-radius: 6px;
       font-weight: bold;
     }
 
-    /* SECTION HEADINGS */
+    .search button:hover,
+    .primary-button:hover {
+      background: var(--red-hover);
+    }
 
-    .section {
-      padding: 24px 0;
+    .page {
+      max-width: 1250px;
+      margin: auto;
+      padding: 22px 20px 40px;
+    }
+
+    .notice {
+      padding: 13px 15px;
+      margin-bottom: 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .section-heading {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 15px;
+      font-size: 23px;
+      margin-bottom: 17px;
     }
 
-    .section-heading h2 {
-      margin: 0;
-      font-size: 22px;
+    .section-heading span {
+      color: var(--red);
     }
-
-    .section-heading h2::before {
-      content: "";
-      display: inline-block;
-      width: 5px;
-      height: 23px;
-      margin-right: 9px;
-      vertical-align: -4px;
-      background: var(--red);
-      border-radius: 4px;
-    }
-
-    .section-label {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    /* FEATURED VIDEO */
-
-    .featured-banner {
-      display: block;
-      position: relative;
-      min-height: 260px;
-      overflow: hidden;
-      border: 1px solid #333;
-      border-radius: 14px;
-      background:
-        radial-gradient(ellipse at 75% 25%, #862020 0%, transparent 35%),
-        linear-gradient(135deg, #351010, #151515 60%, #500c0c);
-      isolation: isolate;
-    }
-
-    .featured-banner::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(0, 0, 0, .88),
-          rgba(0, 0, 0, .18)
-        );
-    }
-
-    .featured-banner.has-thumbnail {
-      background-position: center;
-      background-size: cover;
-    }
-
-    .featured-banner.has-thumbnail::before {
-      background:
-        linear-gradient(
-          0deg,
-          rgba(0, 0, 0, .9),
-          rgba(0, 0, 0, .05) 80%
-        );
-    }
-
-    .featured-content {
-      min-height: 260px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      padding: 24px;
-    }
-
-    .featured-badge {
-      display: inline-block;
-      padding: 5px 10px;
-      margin-bottom: 10px;
-      background: var(--red);
-      border-radius: 5px;
-      font-size: 11px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    .featured-content h1 {
-      max-width: 650px;
-      margin: 0 0 8px;
-      font-size: clamp(25px, 5vw, 38px);
-      line-height: 1.15;
-    }
-
-    .featured-content p {
-      margin: 0 0 17px;
-      color: #ddd;
-      font-size: 14px;
-    }
-
-    .play-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 11px 18px;
-      background: var(--red);
-      border-radius: 7px;
-      font-weight: bold;
-    }
-
-    .play-button:hover {
-      background: #d91e1e;
-    }
-
-    .shuffle-status {
-      margin-top: 10px;
-      color: #bbb;
-      font-size: 12px;
-    }
-
-    /* VIDEO GRID */
 
     .video-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      gap: 22px;
     }
 
     .video-card {
       min-width: 0;
-      overflow: hidden;
       background: var(--surface);
-      border: 1px solid #292929;
-      border-radius: 11px;
-      transition: transform .2s, border-color .2s;
-    }
-
-    .video-card:hover {
-      transform: translateY(-3px);
-      border-color: #6b2525;
-    }
-
-    .video-link {
-      display: block;
-    }
-
-    .video-thumbnail {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      aspect-ratio: 16 / 9;
+      border: 1px solid var(--border);
+      border-radius: 9px;
       overflow: hidden;
-      background:
-        radial-gradient(ellipse at 75% 30%, #792020, transparent 45%),
-        linear-gradient(135deg, #331010, #161616);
     }
 
-    .video-thumbnail img {
-      position: absolute;
-      inset: 0;
+    .thumbnail {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #421021, #160b10);
+      overflow: hidden;
+    }
+
+    .thumbnail img {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .thumbnail-number {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      padding: 4px 7px;
-      background: rgba(0, 0, 0, .7);
-      border-radius: 4px;
-      color: #eee;
-      font-size: 11px;
-    }
-
-    .thumbnail-play {
+    .thumbnail-placeholder {
+      height: 100%;
       display: flex;
-      width: 48px;
-      height: 48px;
       align-items: center;
       justify-content: center;
-      padding-left: 4px;
-      background: rgba(255, 48, 48, .95);
+      color: #e8cbd4;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .play-button {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      background: transparent;
+    }
+
+    .play-icon {
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
-      font-size: 21px;
-      box-shadow: 0 3px 20px rgba(0, 0, 0, .4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(229, 9, 53, 0.95);
+      color: white;
+      font-size: 25px;
+      padding-left: 4px;
+      box-shadow: 0 4px 20px #0008;
     }
 
     .video-info {
       padding: 13px;
     }
 
-    .video-info h3 {
-      margin: 0 0 6px;
-      font-size: 16px;
+    .video-title {
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 10px;
       overflow-wrap: anywhere;
     }
 
-    .video-info p {
-      margin: 0 0 12px;
-      color: var(--muted);
-      font-size: 12px;
+    .video-actions {
+      display: flex;
+      gap: 8px;
     }
 
-    .video-button {
-      display: block;
-      padding: 9px;
-      text-align: center;
-      background: #303030;
-      border: 1px solid #424242;
-      border-radius: 6px;
-      font-size: 13px;
+    .watch-button {
+      flex: 1;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      background: var(--red);
+      color: white;
       font-weight: bold;
     }
 
-    .video-button:hover {
-      background: var(--red);
-      border-color: var(--red);
+    .watch-button:hover {
+      background: var(--red-hover);
+    }
+
+    .player-section {
+      display: none;
+      margin-bottom: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      overflow: hidden;
+    }
+
+    .player-section.active {
+      display: block;
+    }
+
+    .player-top {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .player-top h2 {
+      font-size: 18px;
+      overflow-wrap: anywhere;
+    }
+
+    .close-player {
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      background: var(--surface-light);
+      color: white;
+      border-radius: 5px;
+      padding: 8px 12px;
+    }
+
+    .player-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: black;
+    }
+
+    .player-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
 
     .empty-message {
       display: none;
-      padding: 25px;
-      color: var(--muted);
       text-align: center;
+      color: var(--muted);
+      padding: 35px 15px;
       background: var(--surface);
-      border-radius: 10px;
+      border-radius: 8px;
     }
 
-    /* FOOTER */
-
-    .site-footer {
-      margin-top: 35px;
-      padding: 30px 0;
-      background: #111;
-      border-top: 1px solid #292929;
+    .info-section {
+      margin-top: 38px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
     }
 
-    .footer-inner {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
+    .info-section h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
     }
 
-    .footer-column h3 {
-      margin-top: 0;
-      font-size: 15px;
+    .info-section p {
+      color: var(--muted);
+      font-size: 14px;
     }
 
-    .footer-column p,
-    .footer-column a {
+    footer {
+      padding: 25px 20px;
+      text-align: center;
+      border-top: 1px solid var(--border);
       color: var(--muted);
       font-size: 13px;
     }
 
-    .footer-column a {
-      display: block;
-      margin-bottom: 7px;
+    footer a {
+      color: #ff6685;
     }
-
-    .footer-column a:hover {
-      color: var(--red);
-    }
-
-    .copyright {
-      padding-top: 20px;
-      margin-top: 20px;
-      border-top: 1px solid #292929;
-      color: #888;
-      text-align: center;
-      font-size: 12px;
-    }
-
-    /* AGE CONFIRMATION */
 
     .age-overlay {
       position: fixed;
       inset: 0;
-      z-index: 9999;
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      background: rgba(0, 0, 0, .96);
+      background: rgba(0, 0, 0, 0.96);
     }
 
     .age-box {
       width: 100%;
       max-width: 420px;
-      padding: 28px;
+      padding: 30px 22px;
       text-align: center;
-      background: #171717;
-      border: 1px solid #4b2424;
-      border-radius: 14px;
+      background: #1c1016;
+      border: 1px solid #692036;
+      border-radius: 12px;
     }
 
     .age-box h2 {
-      margin-top: 0;
+      font-size: 27px;
+      margin-bottom: 12px;
+    }
+
+    .age-box h2 span {
       color: var(--red);
-      font-size: 28px;
     }
 
     .age-box p {
-      color: #ddd;
+      color: var(--muted);
+      margin-bottom: 20px;
       font-size: 14px;
     }
 
-    .age-actions {
-      display: grid;
+    .age-buttons {
+      display: flex;
       gap: 10px;
-      margin-top: 22px;
     }
 
-    .age-actions button {
-      padding: 12px;
-      border: 0;
-      border-radius: 7px;
+    .age-buttons button {
+      flex: 1;
+      padding: 12px 8px;
+      border: none;
+      border-radius: 6px;
       font-weight: bold;
     }
 
-    .age-yes {
+    .enter-button {
       background: var(--red);
       color: white;
     }
 
-    .age-no {
-      background: #333;
+    .leave-button {
+      background: #382832;
       color: white;
     }
 
-    .age-notice {
-      color: #aaa !important;
-      font-size: 11px !important;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 760px) {
+    @media (max-width: 850px) {
       .video-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 11px;
+        gap: 14px;
       }
 
-      .footer-inner {
-        grid-template-columns: 1fr;
-        gap: 15px;
+      .header-inner {
+        flex-wrap: wrap;
       }
 
-      .featured-content {
-        padding: 18px;
+      .search {
+        width: 100%;
+        order: 2;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .page {
+        padding: 16px 12px 30px;
       }
 
-      .featured-banner,
-      .featured-content {
-        min-height: 230px;
+      .header-inner {
+        padding: 13px 12px;
+      }
+
+      .video-grid {
+        gap: 10px;
       }
 
       .video-info {
-        padding: 10px;
+        padding: 9px;
       }
 
-      .video-info h3 {
-        font-size: 14px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      .logo {
-        font-size: 22px;
+      .video-title {
+        font-size: 13px;
       }
 
-      .navigation {
-        gap: 12px;
-      }
-
-      .navigation a {
+      .watch-button {
+        padding: 9px 5px;
         font-size: 12px;
       }
 
-      .video-grid {
-        gap: 8px;
+      .play-icon {
+        width: 43px;
+        height: 43px;
+        font-size: 20px;
       }
     }
-  </style></head><body class="locked">  <!-- AGE CONFIRMATION -->  <div class="age-overlay" id="ageOverlay">
-    <div class="age-box">
-      <h2>18+ ONLY</h2>  <p>
-    This website is intended only for adults aged 18 or older,
-    or the legal age required in your location, whichever is higher.
-  </p>
+  </style>
+</head>
 
-  <p>
-    By continuing, you confirm that you meet the applicable
-    age requirement and that viewing this content is lawful
-    where you live.
-  </p>
+<body>
 
-  <div class="age-actions">
-    <button class="age-yes" id="confirmAge">
-      I Confirm I Am Old Enough
-    </button>
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        Naughty<span>Arena</span>
+      </a>
 
-    <button class="age-no" id="leaveSite">
-      Leave Website
-    </button>
-  </div>
-
-  <p class="age-notice">
-    This confirmation screen is not an independent age-verification
-    system.
-  </p>
-</div>
-
-  </div>  <!-- HEADER -->  <header class="site-header">
-    <div class="container header-inner">  <a href="index.html" class="logo">
-    Naughty<span>Arena</span>
-  </a>
-
-  <nav class="navigation" aria-label="Main navigation">
-    <a href="#home">Home</a>
-    <a href="#latest">Latest Videos</a>
-    <a href="#about">About</a>
-  </nav>
-
-</div>
-
-  </header>  <main id="home" class="container"><!-- SEARCH -->
-<section class="search-area" aria-label="Search videos">
-  <form class="search-box" id="searchForm">
-    <input
-      type="search"
-      id="searchInput"
-      placeholder="Search latest videos..."
-      aria-label="Search latest videos"
-    >
-
-    <button type="submit">Search</button>
-  </form>
-</section>
-
-<!-- ROTATING FEATURED VIDEO -->
-<section class="section" id="featuredSection">
-
-  <div class="section-heading">
-    <h2>Featured Today</h2>
-    <span class="section-label">LATEST COLLECTION</span>
-  </div>
-
-  <a href="watch.html?id=latest"
-     class="featured-banner"
-     id="featuredBanner">
-
-    <div class="featured-content">
-
-      <span class="featured-badge">LATEST VIDEO</span>
-
-      <h1 id="featuredTitle">Discover Latest Videos</h1>
-
-      <p id="featuredDescription">
-        Explore the latest additions to NaughtyArena.
-      </p>
-
-      <span class="play-button">
-        ▶ Watch Video
-      </span>
-
-      <span class="shuffle-status" id="shuffleStatus">
-        Featured selection
-      </span>
-
+      <form class="search" id="searchForm">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search videos..."
+          aria-label="Search videos"
+        >
+        <button type="submit">Search</button>
+      </form>
     </div>
-  </a>
+  </header>
 
-</section>
+  <main class="page">
 
-<!-- LATEST VIDEOS -->
-<section class="section" id="latest">
+    <div class="notice">
+      Adults-only website. You must be 18 or older to enter.
+      Videos are provided by their respective third-party hosts.
+    </div>
 
-  <div class="section-heading">
-    <h2>Latest Videos</h2>
-    <span class="section-label" id="videoCount">2 VIDEOS</span>
-  </div>
-
-  <div class="video-grid" id="videoGrid">
-
-    <!-- VIDEO 1 -->
-    <article class="video-card"
-             data-title="Latest Video 1"
-             data-category="Latest">
-
-      <a class="video-link"
-         href="watch.html?id=latest"
-         aria-label="Watch Latest Video 1">
-
-        <div class="video-thumbnail">
-
-          <span class="thumbnail-number">LATEST 01</span>
-
-          <span class="thumbnail-play">▶</span>
-
-        </div>
-
-      </a>
-
-      <div class="video-info">
-        <h3>Latest Video 1</h3>
-        <p>Latest collection</p>
-
-        <a class="video-button"
-           href="watch.html?id=latest">
-          ▶ Watch Video
-        </a>
+    <section id="playerSection" class="player-section">
+      <div class="player-top">
+        <h2 id="playingTitle">Now playing</h2>
+        <button class="close-player" id="closePlayer" type="button">
+          Close
+        </button>
       </div>
 
-    </article>
+      <div class="player-frame" id="playerFrame"></div>
+    </section>
 
-    <!-- VIDEO 2 -->
-    <article class="video-card"
-             data-title="Latest Video 2"
-             data-category="Latest">
+    <section>
+      <h1 class="section-heading">
+        Latest <span>Videos</span>
+      </h1>
 
-      <a class="video-link"
-         href="watch.html?id=latest2"
-         aria-label="Watch Latest Video 2">
+      <div class="video-grid" id="videoGrid"></div>
 
-        <div class="video-thumbnail">
-
-          <span class="thumbnail-number">LATEST 02</span>
-
-          <span class="thumbnail-play">▶</span>
-
-        </div>
-
-      </a>
-
-      <div class="video-info">
-        <h3>Latest Video 2</h3>
-        <p>Latest collection</p>
-
-        <a class="video-button"
-           href="watch.html?id=latest2">
-          ▶ Watch Video
-        </a>
+      <div class="empty-message" id="emptyMessage">
+        No videos found. Try another search.
       </div>
+    </section>
 
-    </article>
-
-  </div>
-
-  <div class="empty-message" id="emptyMessage">
-    No videos matched your search.
-  </div>
-
-</section>
-
-<!-- ABOUT -->
-<section class="section" id="about">
-
-  <div class="section-heading">
-    <h2>About NaughtyArena</h2>
-  </div>
-
-  <p style="color:#bbb;font-size:14px;">
-    NaughtyArena is a video browsing website. Only content
-    featuring consenting adults may be published or embedded.
-    Videos must be lawfully shared, and creators' permissions
-    and platform rules must be respected.
-  </p>
-
-</section>
-
-<!-- PRIVACY -->
-<section class="section" id="privacy">
-
-  <div class="section-heading">
-    <h2>Privacy</h2>
-  </div>
-
-  <p style="color:#bbb;font-size:14px;">
-    NaughtyArena may use browser storage to remember an age
-    confirmation and improve website functionality. Embedded
-    video providers may collect information according to their
-    own privacy policies.
-  </p>
-
-</section>
-
-<!-- TERMS -->
-<section class="section" id="terms">
-
-  <div class="section-heading">
-    <h2>Terms of Use</h2>
-  </div>
-
-  <p style="color:#bbb;font-size:14px;">
-    Users must meet the applicable legal age requirement.
-    Do not upload or share illegal, non-consensual, or
-    unauthorized material. Respect the rights of video creators
-    and the rules of third-party video platforms.
-  </p>
-
-</section>
-
-  </main>  <!-- FOOTER -->  <footer class="site-footer"><div class="container">
-
-  <div class="footer-inner">
-
-    <div class="footer-column">
-      <h3>NaughtyArena</h3>
+    <section class="info-section">
+      <h2>About NaughtyArena</h2>
       <p>
-        Browse the latest additions and discover videos
-        from authorized sources.
+        NaughtyArena is an adults-only video directory.
+        Video titles, thumbnails and embedded players are supplied
+        by their respective providers. We do not claim ownership
+        of third-party videos.
       </p>
-    </div>
+    </section>
 
-    <div class="footer-column">
-      <h3>Quick Links</h3>
-      <a href="#home">Home</a>
-      <a href="#latest">Latest Videos</a>
-      <a href="#about">About Us</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#terms">Terms of Use</a>
-    </div>
+    <section class="info-section">
+      <h2>Privacy</h2>
+      <p>
+        Search terms are used locally to filter the videos shown on
+        this page. Third-party video providers may collect information
+        when their embedded players load.
+      </p>
+    </section>
 
-    <div class="footer-column">
-      <h3>Contact</h3>
-      <a href="mailto:naughtyarena66@gmail.com">
-        naughtyarena66@gmail.com
-      </a>
-    </div>
+    <section class="info-section">
+      <h2>Contact</h2>
+      <p>
+        For questions or content concerns, email
+        <a href="mailto:naughtyarena66@gmail.com">
+          naughtyarena66@gmail.com
+        </a>.
+      </p>
+    </section>
 
+  </main>
+
+  <footer>
+    <p>
+      &copy; <span id="year"></span> NaughtyArena.
+      Adults 18+ only.
+    </p>
+  </footer>
+
+  <div class="age-overlay" id="ageOverlay">
+    <div class="age-box">
+      <h2>Naughty<span>Arena</span></h2>
+
+      <p>
+        This website is intended only for adults aged 18 and over.
+        By continuing, you confirm that you are at least 18 and that
+        accessing this content is lawful where you live.
+      </p>
+
+      <div class="age-buttons">
+        <button class="enter-button" id="enterButton" type="button">
+          I am 18+
+        </button>
+
+        <button class="leave-button" id="leaveButton" type="button">
+          Leave
+        </button>
+      </div>
+    </div>
   </div>
 
-  <div class="copyright">
-    &copy; <span id="currentYear"></span> NaughtyArena.
-    All rights reserved.
-  </div>
-
-</div>
-
-  </footer>  <script>
+  <script>
     /*
-      LATEST VIDEO SETTINGS
+      ADD YOUR VIDEOS HERE.
 
-      Add new videos to this list when you have their embed URLs.
+      title:
+        Enter the video's original title.
 
       thumbnail:
-      Paste an authorized thumbnail image URL between the quotes.
-      Leave it empty if you do not have a thumbnail image.
+        Enter a direct image URL that you are authorized to use.
 
-      IMPORTANT:
-      Video IDs must match the IDs in watch.html.
+      embedUrl:
+        Enter the video's official embed URL.
+
+      Add each new video as another object in this list.
     */
 
-    const latestVideos = [
+    const videos = [
       {
         id: "latest",
-        title: "Latest Video 1",
-        category: "Latest",
-        thumbnail: ""
+        title: "REPLACE WITH THE FIRST VIDEO'S ORIGINAL TITLE",
+        thumbnail: "",
+        embedUrl: "https://www.pornhub.com/embed/6abc4c1e1f524"
       },
       {
         id: "latest2",
-        title: "Latest Video 2",
-        category: "Latest",
-        thumbnail: ""
+        title: "REPLACE WITH THE SECOND VIDEO'S ORIGINAL TITLE",
+        thumbnail: "",
+        embedUrl: "https://www.pornhub.com/embed/ph5df99adcd510c"
       }
     ];
 
-    // AGE CONFIRMATION
+    const videoGrid = document.getElementById("videoGrid");
+    const searchInput = document.getElementById("searchInput");
+    const emptyMessage = document.getElementById("emptyMessage");
+    const playerSection = document.getElementById("playerSection");
+    const playerFrame = document.getElementById("playerFrame");
+    const playingTitle = document.getElementById("playingTitle");
 
-    const ageOverlay = document.getElementById("ageOverlay");
-
-    function unlockSite() {
-      ageOverlay.style.display = "none";
-      document.body.classList.remove("locked");
-    }
-
-    try {
-      if (localStorage.getItem("naughtyArenaAgeConfirmed") === "yes") {
-        unlockSite();
-      }
-    } catch (error) {
-      // Keep the confirmation screen available if storage is disabled.
-    }
-
-    document.getElementById("confirmAge").addEventListener("click", function () {
+    function isAllowedEmbed(url) {
       try {
-        localStorage.setItem("naughtyArenaAgeConfirmed", "yes");
-      } catch (error) {
-        // The current visit can still continue.
+        const parsed = new URL(url);
+
+        return (
+          parsed.protocol === "https:" &&
+          parsed.hostname === "www.pornhub.com" &&
+          parsed.pathname.startsWith("/embed/")
+        );
+      } catch {
+        return false;
+      }
+    }
+
+    function createVideoCard(video) {
+      const card = document.createElement("article");
+      card.className = "video-card";
+
+      const thumbnail = document.createElement("div");
+      thumbnail.className = "thumbnail";
+
+      if (video.thumbnail) {
+        const img = document.createElement("img");
+        img.src = video.thumbnail;
+        img.alt = video.title;
+        img.loading = "lazy";
+
+        img.onerror = function () {
+          img.remove();
+
+          const placeholder = document.createElement("div");
+          placeholder.className = "thumbnail-placeholder";
+          placeholder.textContent = "Video thumbnail unavailable";
+          thumbnail.prepend(placeholder);
+        };
+
+        thumbnail.appendChild(img);
+      } else {
+        const placeholder = document.createElement("div");
+        placeholder.className = "thumbnail-placeholder";
+        placeholder.textContent = "Add a video thumbnail";
+        thumbnail.appendChild(placeholder);
       }
 
-      unlockSite();
-    });
+      const playButton = document.createElement("button");
+      playButton.className = "play-button";
+      playButton.type = "button";
+      playButton.setAttribute("aria-label", "Play " + video.title);
 
-    document.getElementById("leaveSite").addEventListener("click", function () {
-      window.location.replace("about:blank");
-    });
+      const playIcon = document.createElement("span");
+      playIcon.className = "play-icon";
+      playIcon.textContent = "▶";
 
-    // CURRENT YEAR
+      playButton.appendChild(playIcon);
+      playButton.addEventListener("click", () => playVideo(video));
 
-    document.getElementById("currentYear").textContent =
-      new Date().getFullYear();
+      thumbnail.appendChild(playButton);
 
-    // FEATURED VIDEO SHUFFLING
-    // Only entries in latestVideos are eligible.
+      const info = document.createElement("div");
+      info.className = "video-info";
 
-    const featuredBanner = document.getElementById("featuredBanner");
-    const featuredTitle = document.getElementById("featuredTitle");
-    const featuredDescription = document.getElementById("featuredDescription");
-    const shuffleStatus = document.getElementById("shuffleStatus");
+      const title = document.createElement("h2");
+      title.className = "video-title";
+      title.textContent = video.title;
 
-    let currentFeaturedIndex = -1;
+      const actions = document.createElement("div");
+      actions.className = "video-actions";
 
-    function showRandomFeaturedVideo() {
-      if (latestVideos.length === 0) {
+      const watchButton = document.createElement("button");
+      watchButton.className = "watch-button";
+      watchButton.type = "button";
+      watchButton.textContent = "▶ Play Video";
+      watchButton.addEventListener("click", () => playVideo(video));
+
+      actions.appendChild(watchButton);
+      info.appendChild(title);
+      info.appendChild(actions);
+
+      card.appendChild(thumbnail);
+      card.appendChild(info);
+
+      return card;
+    }
+
+    function renderVideos(query = "") {
+      videoGrid.replaceChildren();
+
+      const normalizedQuery = query.trim().toLowerCase();
+
+      const filtered = videos.filter(video =>
+        video.title.toLowerCase().includes(normalizedQuery)
+      );
+
+      filtered.forEach(video => {
+        videoGrid.appendChild(createVideoCard(video));
+      });
+
+      emptyMessage.style.display = filtered.length ? "none" : "block";
+    }
+
+    function playVideo(video) {
+      if (!isAllowedEmbed(video.embedUrl)) {
+        alert("This video embed URL is not valid.");
         return;
       }
 
-      let nextIndex = 0;
+      playingTitle.textContent = video.title;
 
-      if (latestVideos.length > 1) {
-        do {
-          nextIndex = Math.floor(Math.random() * latestVideos.length);
-        } while (nextIndex === currentFeaturedIndex);
-      }
+      const iframe = document.createElement("iframe");
+      iframe.src = video.embedUrl;
+      iframe.title = video.title;
+      iframe.allow = "autoplay; fullscreen; picture-in-picture";
+      iframe.allowFullscreen = true;
+      iframe.loading = "lazy";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
 
-      currentFeaturedIndex = nextIndex;
+      playerFrame.replaceChildren(iframe);
+      playerSection.classList.add("active");
 
-      const video = latestVideos[nextIndex];
-
-      featuredBanner.href =
-        "watch.html?id=" + encodeURIComponent(video.id);
-
-      featuredTitle.textContent = video.title;
-
-      featuredDescription.textContent =
-        "Explore the latest additions to NaughtyArena.";
-
-      shuffleStatus.textContent =
-        "Featured " + (nextIndex + 1) + " of " + latestVideos.length;
-
-      if (video.thumbnail) {
-        featuredBanner.style.backgroundImage =
-          'url("' + video.thumbnail.replace(/["\\]/g, "") + '")';
-
-        featuredBanner.classList.add("has-thumbnail");
-      } else {
-        featuredBanner.style.backgroundImage = "";
-        featuredBanner.classList.remove("has-thumbnail");
-      }
-    }
-
-    showRandomFeaturedVideo();
-
-    // Change the featured selection every 6 seconds.
-    // It changes the selected video link and title, not a video preview.
-
-    if (latestVideos.length > 1) {
-      window.setInterval(showRandomFeaturedVideo, 6000);
-    }
-
-    // VIDEO GRID THUMBNAILS
-
-    function addThumbnailImages() {
-      const cards = document.querySelectorAll(".video-card");
-
-      cards.forEach(function (card) {
-        const title = card.dataset.title;
-
-        const video = latestVideos.find(function (item) {
-          return item.title === title;
-        });
-
-        if (!video || !video.thumbnail) {
-          return;
-        }
-
-        const thumbnailBox = card.querySelector(".video-thumbnail");
-
-        if (!thumbnailBox) {
-          return;
-        }
-
-        const img = document.createElement("img");
-
-        img.src = video.thumbnail;
-        img.alt = video.title + " thumbnail";
-        img.loading = "lazy";
-
-        img.addEventListener("error", function () {
-          img.remove();
-        });
-
-        thumbnailBox.prepend(img);
+      playerSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
       });
     }
 
-    addThumbnailImages();
-
-    // SEARCH LATEST VIDEOS
-
-    const searchInput = document.getElementById("searchInput");
-    const searchForm = document.getElementById("searchForm");
-    const videoCards = Array.from(
-      document.querySelectorAll(".video-card")
-    );
-
-    const emptyMessage = document.getElementById("emptyMessage");
-    const videoCount = document.getElementById("videoCount");
-
-    function filterVideos() {
-      const query = searchInput.value.trim().toLowerCase();
-      let visibleCount = 0;
-
-      videoCards.forEach(function (card) {
-        const title = (card.dataset.title || "").toLowerCase();
-
-        const matches = title.includes(query);
-
-        card.style.display = matches ? "" : "none";
-
-        if (matches) {
-          visibleCount++;
-        }
-      });
-
-      emptyMessage.style.display =
-        visibleCount === 0 ? "block" : "none";
-
-      videoCount.textContent =
-        visibleCount + (visibleCount === 1 ? " VIDEO" : " VIDEOS");
+    function closePlayer() {
+      playerFrame.replaceChildren();
+      playerSection.classList.remove("active");
     }
 
-    searchForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-      filterVideos();
+    document.getElementById("closePlayer")
+      .addEventListener("click", closePlayer);
 
-      document.getElementById("latest").scrollIntoView({
-        behavior: "smooth"
+    document.getElementById("searchForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        renderVideos(searchInput.value);
       });
+
+    searchInput.addEventListener("input", function () {
+      renderVideos(searchInput.value);
     });
 
-    searchInput.addEventListener("input", filterVideos);
-  </script></body>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    const ageOverlay = document.getElementById("ageOverlay");
+
+    if (localStorage.getItem("naughtyArenaAgeConfirmed") === "yes") {
+      ageOverlay.style.display = "none";
+    }
+
+    document.getElementById("enterButton")
+      .addEventListener("click", function () {
+        localStorage.setItem("naughtyArenaAgeConfirmed", "yes");
+        ageOverlay.style.display = "none";
+      });
+
+    document.getElementById("leaveButton")
+      .addEventListener("click", function () {
+        window.location.href = "about:blank";
+      });
+
+    renderVideos();
+  </script>
+
+</body>
 </html>
