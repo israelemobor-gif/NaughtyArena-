@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Watch Video | NaughtyArena</title>
+  <meta name="description" content="Watch videos on NaughtyArena. Adults only.">
+  <meta name="theme-color" content="#111111">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #111111;
+      --panel: #1c1c1c;
+      --red: #ed174c;
+      --text: #ffffff;
+      --muted: #bdbdbd;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: #ff6688;
+      text-decoration: none;
+    }
+
+    header {
+      padding: 18px 15px;
+      text-align: center;
+      background: #090909;
+      border-bottom: 3px solid var(--red);
+    }
+
+    .logo {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .logo span {
+      color: var(--red);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px 15px;
+    }
+
+    .player-panel {
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid #303030;
+      border-radius: 10px;
+    }
+
+    .player {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+
+    .player iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-details {
+      padding: 18px;
+    }
+
+    .video-details h1 {
+      margin: 0 0 8px;
+      font-size: 23px;
+    }
+
+    .metadata {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .category-label {
+      display: inline-block;
+      padding: 4px 10px;
+      margin-top: 8px;
+      border-radius: 5px;
+      background: #35121e;
+      color: #ff6688;
+      font-size: 12px;
+    }
+
+    .section-heading {
+      margin: 30px 0 15px;
+      font-size: 21px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .video-card {
+      overflow: hidden;
+      border: 1px solid #303030;
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .thumbnail {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 120px;
+      background: linear-gradient(135deg, #36101b, #171717);
+      color: #ff6688;
+      font-size: 34px;
+    }
+
+    .card-info {
+      padding: 12px;
+    }
+
+    .card-info h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+
+    .card-info p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .watch-button {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 5px;
+      background: var(--red);
+      color: white;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .message {
+      padding: 18px;
+      margin: 20px 0;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 24px 15px;
+      margin-top: 35px;
+      text-align: center;
+      background: #080808;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 650px) {
+      .video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .video-details h1 {
+        font-size: 20px;
+      }
+
+      .thumbnail {
+        min-height: 100px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1 class="logo">Naughty<span>Arena</span></h1>
+    <a class="back-link" href="index.html">← Back to Home</a>
+  </header>
+
+  <main class="container">
+
+    <section class="player-panel">
+      <div class="player" id="videoPlayer">
+        <div class="message">
+          Loading video...
+        </div>
+      </div>
+
+      <div class="video-details">
+        <h1 id="videoTitle">Loading video...</h1>
+        <div class="metadata" id="videoDescription"></div>
+        <div class="category-label" id="videoCategory"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-heading">Recommended Videos</h2>
+
+      <div class="video-grid" id="recommendations"></div>
+
+      <p class="message" id="noRecommendations" hidden>
+        No recommendations are available yet.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> NaughtyArena · Adults only</p>
+    <a href="index.html">Home</a>
+  </footer>
+
+  <script>
+    /*
+      Add videos you have permission to embed here.
+      Use the official embed URL provided by the video platform.
+      Never use a normal video-page URL as an embed URL.
+    */
+
+    const videos = [
+      {
+        id: "latest",
+        title: "Latest Video",
+        category: "Latest",
+        description: "Featured video",
+        embedUrl: "https://www.pornhub.com/embed/6abc4c1e1f524"
+      },
+
+      {
+        id: "featured",
+        title: "Featured Video",
+        category: "Popular",
+        description: "Featured video collection",
+        embedUrl: ""
+      },
+
+      {
+        id: "popular",
+        title: "Popular Video",
+        category: "Popular",
+        description: "Popular video collection",
+        embedUrl: ""
+      },
+
+      {
+        id: "amateur",
+        title: "Creator Video",
+        category: "Amateur",
+        description: "Creator-submitted collection",
+        embedUrl: ""
+      },
+
+      {
+        id: "couples",
+        title: "Couples Video",
+        category: "Couples",
+        description: "Couples collection",
+        embedUrl: ""
+      },
+
+      {
+        id: "professional",
+        title: "Professional Video",
+        category: "Professional",
+        description: "Professional collection",
+        embedUrl: ""
+      }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const requestedId = params.get("id");
+
+    const selectedVideo =
+      videos.find(video => video.id === requestedId);
+
+    const player = document.getElementById("videoPlayer");
+    const title = document.getElementById("videoTitle");
+    const description = document.getElementById("videoDescription");
+    const category = document.getElementById("videoCategory");
+    const recommendations =
+      document.getElementById("recommendations");
+
+    function renderPlayer(video) {
+      title.textContent = video.title;
+      description.textContent = video.description;
+      category.textContent = video.category;
+
+      player.replaceChildren();
+
+      if (!video.embedUrl) {
+        const message = document.createElement("div");
+        message.className = "message";
+        message.textContent =
+          "This video has not been connected yet.";
+        player.appendChild(message);
+        return;
+      }
+
+      try {
+        const url = new URL(video.embedUrl);
+
+        const permittedHosts = [
+          "www.pornhub.com",
+          "pornhub.com"
+        ];
+
+        if (
+          url.protocol !== "https:" ||
+          !permittedHosts.includes(url.hostname) ||
+          !url.pathname.startsWith("/embed/")
+        ) {
+          throw new Error("Unsupported embed URL");
+        }
+
+        const iframe = document.createElement("iframe");
+
+        iframe.src = url.href;
+        iframe.title = video.title;
+        iframe.loading = "lazy";
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+
+        player.appendChild(iframe);
+
+      } catch (error) {
+        const message = document.createElement("div");
+        message.className = "message";
+        message.textContent =
+          "This video embed URL is invalid or unsupported.";
+        player.appendChild(message);
+      }
+    }
+
+    function renderRecommendations(currentVideo) {
+      recommendations.replaceChildren();
+
+      const relatedVideos = videos.filter(video =>
+        video.id !== currentVideo.id
+      );
+
+      relatedVideos.forEach(video => {
+        const card = document.createElement("article");
+        card.className = "video-card";
+
+        const thumbnail = document.createElement("div");
+        thumbnail.className = "thumbnail";
+        thumbnail.textContent = "▶";
+        thumbnail.setAttribute("aria-hidden", "true");
+
+        const info = document.createElement("div");
+        info.className = "card-info";
+
+        const heading = document.createElement("h3");
+        heading.textContent = video.title;
+
+        const details = document.createElement("p");
+        details.textContent = video.category;
+
+        const button = document.createElement("a");
+        button.className = "watch-button";
+        button.href =
+          "watch.html?id=" + encodeURIComponent(video.id);
+        button.textContent = "Watch Video";
+
+        info.append(heading, details, button);
+        card.append(thumbnail, info);
+        recommendations.appendChild(card);
+      });
+
+      document.getElementById("noRecommendations").hidden =
+        relatedVideos.length > 0;
+    }
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    if (selectedVideo) {
+      document.title =
+        selectedVideo.title + " | NaughtyArena";
+
+      renderPlayer(selectedVideo);
+      renderRecommendations(selectedVideo);
+    } else {
+      title.textContent = "Video not found";
+      description.textContent =
+        "Choose a video from the homepage or recommendations.";
+
+      category.textContent = "";
+
+      player.replaceChildren();
+
+      const message = document.createElement("div");
+      message.className = "message";
+      message.textContent =
+        "Open the homepage to choose a video.";
+
+      player.appendChild(message);
+      recommendations.replaceChildren();
+
+      document.getElementById("noRecommendations").hidden = false;
+    }
+  </script>
+
+</body>
+  </html>
