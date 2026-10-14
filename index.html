@@ -530,9 +530,19 @@
       </p>
 
       <div class="age-buttons">
-        <button class="enter-button" id="enterButton" type="button">
-          I am 18+
-        </button>
+        <button
+  class="enter-button"
+  id="enterButton"
+  type="button"
+  onclick="
+    document.getElementById('ageOverlay').style.display='none';
+    try {
+      localStorage.setItem('naughtyArenaAgeConfirmed', 'yes');
+    } catch(e) {}
+  "
+>
+  I am 18+
+</button>
 
         <button class="leave-button" id="leaveButton" type="button">
           Leave
