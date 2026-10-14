@@ -4,474 +4,629 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>NaughtyArena | Entertainment & Trending Videos</title>
+  <title>NaughtyArena | 18+ Video Gallery</title>
 
-  <meta name="description" content="Discover entertainment news, movie reviews, trending videos and recommended offers on NaughtyArena.">
+  <meta name="description"
+        content="Explore the NaughtyArena 18+ video gallery. Adults only.">
+
+  <meta name="theme-color" content="#111111">
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      --background: #111111;
+      --panel: #1c1c1c;
+      --red: #ed174c;
+      --text: #ffffff;
+      --muted: #bdbdbd;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #111;
-      color: #fff;
+      background: var(--background);
+      color: var(--text);
       line-height: 1.6;
     }
 
+    body.age-locked {
+      overflow: hidden;
+    }
+
+    a {
+      color: #ff6688;
+    }
+
     header {
-      background: #222;
-      padding: 22px 15px;
+      padding: 20px 15px;
       text-align: center;
-      border-bottom: 3px solid #e67e22;
+      background: #090909;
+      border-bottom: 3px solid var(--red);
     }
 
-    header h1 {
+    .logo {
       margin: 0;
-      color: #ff9f43;
       font-size: 30px;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
 
-    header p {
-      margin-bottom: 0;
-      color: #ddd;
+    .logo span {
+      color: var(--red);
+    }
+
+    .tagline {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      background: #333;
-      padding: 12px;
-      gap: 18px;
+      gap: 20px;
+      padding: 13px;
+      background: #202020;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      font-size: 14px;
     }
 
     nav a:hover {
-      color: #ff9f43;
+      color: var(--red);
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
-      padding: 20px;
+      padding: 20px 15px;
     }
 
     .hero {
       text-align: center;
       padding: 35px 15px;
-      background: #252525;
-      border-radius: 10px;
       margin-bottom: 25px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #291018, #171717);
     }
 
     .hero h2 {
-      color: #ff9f43;
+      margin-top: 0;
       font-size: 27px;
     }
 
-    .section-title {
-      color: #ff9f43;
-      border-bottom: 1px solid #555;
-      padding-bottom: 8px;
+    .hero p {
+      color: var(--muted);
     }
 
-    .card {
-      background: #222;
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--red);
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 25px 0 15px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .search {
+      width: 100%;
+      max-width: 300px;
+      padding: 11px 13px;
+      border: 1px solid #444;
+      border-radius: 6px;
+      background: #202020;
+      color: white;
+      font-size: 15px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .video-card {
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid #303030;
       border-radius: 8px;
-      padding: 18px;
-      margin: 15px 0;
     }
 
-    .card h3 {
-      margin-top: 0;
-      color: #ffb366;
+    .thumbnail {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 150px;
+      padding: 15px;
+      background: linear-gradient(135deg, #36101b, #171717);
+      color: #ff6688;
+      font-size: 36px;
+    }
+
+    .video-info {
+      padding: 14px;
+    }
+
+    .video-info h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .video-info p {
+      margin: 0 0 13px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .button {
       display: inline-block;
-      padding: 10px 16px;
-      background: #e67e22;
-      color: #111;
+      padding: 9px 13px;
+      border: none;
+      border-radius: 5px;
+      background: var(--red);
+      color: white;
       text-decoration: none;
       font-weight: bold;
-      border-radius: 5px;
+      cursor: pointer;
     }
 
-    .notice {
-      background: #292929;
-      border-left: 4px solid #ff9f43;
-      padding: 15px;
-      margin: 20px 0;
+    .button:hover {
+      background: #c90f3b;
+    }
+
+    .notice,
+    .ad-space,
+    .legal-card {
+      margin: 25px 0;
+      padding: 18px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .ad-space {
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      border-style: dashed;
+    }
+
+    .legal-card h2 {
+      color: #ff6688;
+    }
+
+    .legal-card p {
+      color: #d0d0d0;
+      font-size: 14px;
     }
 
     footer {
-      text-align: center;
-      padding: 25px 15px;
-      background: #222;
       margin-top: 35px;
-      color: #ccc;
+      padding: 25px 15px;
+      text-align: center;
+      background: #080808;
+      color: var(--muted);
     }
 
     footer a {
-      color: #ffb366;
-      margin: 5px;
+      display: inline-block;
+      margin: 5px 8px;
+    }
+
+    /* Age confirmation screen */
+
+    .age-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.97);
+    }
+
+    .age-box {
+      width: 100%;
+      max-width: 420px;
+      padding: 28px 22px;
+      text-align: center;
+      border: 1px solid #4a1b29;
+      border-top: 4px solid var(--red);
+      border-radius: 12px;
+      background: #171717;
+    }
+
+    .age-symbol {
+      color: var(--red);
+      font-size: 45px;
+      font-weight: 900;
+    }
+
+    .age-box h2 {
+      margin: 5px 0 12px;
+    }
+
+    .age-box p {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .age-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .age-buttons button {
+      padding: 13px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .enter-button {
+      border: none;
+      background: var(--red);
+      color: white;
+    }
+
+    .leave-button {
+      border: 1px solid #555;
+      background: transparent;
+      color: white;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 700px) {
+      .video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .thumbnail {
+        min-height: 115px;
+      }
+
+      .video-info {
+        padding: 10px;
+      }
+
+      .video-info h3 {
+        font-size: 14px;
+      }
+
+      .section-heading h2 {
+        font-size: 19px;
+      }
+
+      .search {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
-<body>
+<body class="age-locked">
+
+  <!-- Age confirmation -->
+  <div class="age-overlay" id="ageOverlay">
+    <div class="age-box">
+      <div class="age-symbol">18+</div>
+
+      <h2>Welcome to NaughtyArena</h2>
+
+      <p>
+        This website is intended for adults only.
+        You must be at least 18 years old, or the
+        legal adult age in your location, whichever
+        is higher, to continue.
+      </p>
+
+      <p>
+        By continuing, you confirm that you meet
+        the applicable age requirement and that
+        accessing this content is lawful where you live.
+      </p>
+
+      <div class="age-buttons">
+        <button class="enter-button" id="enterButton">
+          I Confirm I Am of Legal Age
+        </button>
+
+        <button class="leave-button" id="leaveButton">
+          Leave Website
+        </button>
+      </div>
+    </div>
+  </div>
 
   <header>
-    <h1>NaughtyArena</h1>
-    <p>Entertainment, Trending Videos & More</p>
+    <h1 class="logo">Naughty<span>Arena</span></h1>
+    <p class="tagline">18+ VIDEO GALLERY · ADULTS ONLY</p>
   </header>
 
   <nav>
     <a href="#home">Home</a>
-    <a href="#entertainment">Entertainment</a>
     <a href="#videos">Videos</a>
-    <a href="#musics">musics</a>
-    <a href="#offers">Offers</a>
-    <a href="#about">about</a>
+    <a href="#advertising">Advertising</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#terms">Terms</a>
+    <a href="#contact">Contact</a>
   </nav>
-      </section>
 
   <main class="container">
 
     <section class="hero" id="home">
+      <span class="badge">18+ ONLY</span>
+
       <h2>Welcome to NaughtyArena</h2>
-      <p>Explore entertainment stories, movie reviews, interesting videos and useful offers.</p>
-      <section 
-        
-    <section id="music">
-  <h2 class="section-title">🎵 Music Downloads</h2>  <div class="notice">
-    <p>
-      Discover music from independent artists and explore official
-      music platforms. Listen to previews and download tracks that
-      artists have authorized us to distribute.
-    </p>
-  </div>  <article class="card">
-    <h3>🎧 Featured Music</h3><p><strong>Song:</strong> Your First Featured Song</p>
-<p><strong>Artist:</strong> Independent Artist</p>
 
-<audio controls preload="none" style="width:100%;">
-  <source src="music/featured-song.mp3" type="audio/mpeg">
-  Your browser does not support audio playback.
-</audio>
-
-<p>
-  <a class="button" href="music/featured-song.mp3" download>
-    ⬇️ Download MP3
-  </a>
-</p>
-
-<p>
-  <small>
-    Sample entry: replace this with a real track you own or have
-    permission to distribute.
-  </small>
-</p>
-
-  </article>  <article class="card">
-    <h3>🌍 Discover Official Music</h3><p>
-  Find music through official artist pages and authorized music
-  platforms.
-</p>
-
-<p>
-  Add an artist's verified music page or an authorized download
-  page below.
-</p>
-
-<a class="button"
-   href="https://bandcamp.com/"
-   target="_blank"
-   rel="noopener noreferrer">
-  Explore Music on Bandcamp
-</a>
-
-  </article>  <article class="card">
-    <h3>🎤 Independent Artists Wanted</h3><p>
-  Are you an independent musician? NaughtyArena welcomes artists
-  who want to promote their music and reach new listeners.
-</p>
-
-<p>
-  Artists can contact us about featuring their music, subject
-  to permission and availability.
-</p>
-
-  </article>
-
-    </section>
-
-    <section id="entertainment">
-      <h2 class="section-title">Entertainment</h2>
-
-      <article class="card">
-        <h3>Celebrity News & Trending Stories</h3>
-        <p>Discover entertainment updates, celebrity stories and the latest happenings.</p>
-        <p>New articles will appear here as we publish them.</p>
-      </article>
-
-      <article class="card">
-        <h3>Movie Reviews</h3>
-        <p>Explore movie reviews, recommendations and stories about your favourite films.</p>
-      </article>
-    <article class="card">
-        <h3>10 Black American Action Movies Worth Watching</h3>
-
-        <p>
-          Looking for exciting action movies with intense fights,
-          unforgettable characters and gripping stories? Here are
-          ten films worth adding to your watchlist.
-        </p>
-
-        <h4>1. Bad Boys (1995)</h4>
-        <p>
-          Will Smith and Martin Lawrence star as Miami detectives
-          investigating a major drug case. The film combines action,
-          comedy and an entertaining police partnership.
-        </p>
-
-        <h4>2. Bad Boys II (2003)</h4>
-        <p>
-          The detectives return for a bigger investigation involving
-          drug trafficking in Miami, with explosive action sequences.
-        </p>
-
-        <h4>3. Training Day (2001)</h4>
-        <p>
-          Denzel Washington plays a complicated narcotics detective
-          who takes a rookie officer through a dangerous day on the
-          streets of Los Angeles.
-        </p>
-
-        <h4>4. John Wick (2014)</h4>
-        <p>
-          Keanu Reeves stars as a former assassin drawn back into
-          the criminal underworld. The film is known for its
-          carefully choreographed action scenes.
-        </p>
-
-        <h4>5. The Equalizer (2014)</h4>
-        <p>
-          Denzel Washington plays a former intelligence operative
-          who uses his skills to protect vulnerable people from
-          dangerous criminals.
-        </p>
-
-        <h4>6. Menace II Society (1993)</h4>
-        <p>
-          This crime drama follows a young man navigating violence,
-          difficult choices and life in South Central Los Angeles.
-        </p>
-
-        <h4>7. Baby Boy (2001)</h4>
-        <p>
-          This urban drama explores relationships, responsibility
-          and the challenges facing a young man trying to find
-          direction in his life.
-        </p>
-
-        <h4>8. Shaft (2000)</h4>
-        <p>
-          Samuel L. Jackson stars as a determined New York detective
-          investigating a case involving privilege, violence and
-          corruption.
-        </p>
-
-        <h4>9. 21 Bridges (2019)</h4>
-        <p>
-          Chadwick Boseman plays a New York detective pursuing
-          suspects in a case that leads to an extraordinary
-          citywide lockdown.
-        </p>
-
-        <h4>10. Black Panther (2018)</h4>
-        <p>
-          Chadwick Boseman stars as T'Challa, a king who must defend
-          Wakanda while confronting challenges to his leadership.
-          The film combines superhero action with political drama.
-        </p>
-
-        <h3>Which Movie Should You Watch First?</h3>
-
-        <p>
-          For a mixture of action and comedy, start with Bad Boys.
-          For a serious crime story, try Training Day. If you enjoy
-          superhero adventures, Black Panther is another strong choice.
-        </p>
-
-        <p>
-          These films offer different styles of action, from police
-          thrillers to crime dramas and superhero adventures.
-        </p>
-
-        <p>
-          <strong>Enjoyed this list?</strong> Visit NaughtyArena
-          again for more movie recommendations and entertainment stories.
-        </p>
-      </article>
-      <article class="card">
-        <h3>10 Real-Life Crime Movies Based on True Events</h3>
-
-        <p>
-          Some of the most gripping crime films draw inspiration from
-          real investigations, criminal cases and historical events.
-          Here are ten movies worth watching if you enjoy true-crime stories.
-        </p>
-
-        <h4>1. Black Mass (2015)</h4>
-        <p>
-          Johnny Depp portrays James "Whitey" Bulger, a notorious Boston
-          criminal who developed a relationship with an FBI agent.
-          The film explores corruption, organized crime and betrayal.
-        </p>
-
-        <h4>2. American Gangster (2007)</h4>
-        <p>
-          Denzel Washington stars as Frank Lucas, a Harlem drug trafficker
-          whose criminal operation attracted the attention of law enforcement.
-          The film dramatizes events from Lucas's life.
-        </p>
-
-        <h4>3. Hotel Mumbai (2018)</h4>
-        <p>
-          This thriller dramatizes the November 2008 terrorist attacks
-          in Mumbai, focusing on the people trapped inside the Taj Mahal
-          Palace Hotel during the crisis.
-        </p>
-
-        <h4>4. Captain Phillips (2013)</h4>
-        <p>
-          Tom Hanks stars in this dramatization of the 2009 hijacking
-          of the cargo ship Maersk Alabama by Somali pirates.
-        </p>
-
-        <h4>5. Richard Jewell (2019)</h4>
-        <p>
-          Directed by Clint Eastwood, this film follows the security guard
-          who discovered a bomb during the 1996 Atlanta Olympics and later
-          became the subject of intense media scrutiny.
-        </p>
-
-        <h4>6. Catch Me If You Can (2002)</h4>
-        <p>
-          Leonardo DiCaprio portrays Frank Abagnale Jr., a man associated
-          with check fraud and impersonation. The movie is based on
-          Abagnale's claims, some of which have been disputed.
-        </p>
-
-        <h4>7. Goodfellas (1990)</h4>
-        <p>
-          Martin Scorsese's crime classic follows Henry Hill's involvement
-          with organized crime in New York. It was inspired by real people
-          and events described in Nicholas Pileggi's book.
-        </p>
-
-        <h4>8. Zodiac (2007)</h4>
-        <p>
-          This thriller follows investigators and journalists attempting
-          to identify the Zodiac Killer, who terrorized parts of California
-          during the late 1960s and early 1970s.
-        </p>
-
-        <h4>9. The Wolf of Wall Street (2013)</h4>
-        <p>
-          Leonardo DiCaprio portrays stockbroker Jordan Belfort.
-          The film explores financial fraud, excessive spending and
-          the investigation into his brokerage business.
-        </p>
-
-        <h4>10. 12 Years a Slave (2013)</h4>
-        <p>
-          Based on Solomon Northup's memoir, this historical drama recounts
-          how a free Black man was kidnapped and sold into slavery in
-          nineteenth-century America.
-        </p>
-
-        <h3>Which Movie Should You Watch First?</h3>
-
-        <p>
-          For organized crime, try Goodfellas or Black Mass.
-          For a historical account of a major terrorist attack,
-          consider Hotel Mumbai. If you enjoy investigative mysteries,
-          Zodiac is a compelling choice.
-        </p>
-
-        <p>
-          Remember that films based on real events may change dialogue,
-          timelines and characters for dramatic effect. A movie inspired
-          by a true story is not necessarily a completely accurate record.
-        </p>
-
-        <p>
-          Visit NaughtyArena for more movie recommendations,
-          entertainment stories and interesting features.
-        </p>
-      </article>
+      <p>
+        Explore our adult video gallery.
+        Videos will appear here when a permitted
+        video provider is connected.
+      </p>
     </section>
 
     <section id="videos">
-      <h2 class="section-title">Trending Videos</h2>
+      <div class="section-heading">
+        <h2>Video Gallery</h2>
 
-      <article class="card">
-        <h3>Watch Interesting Videos</h3>
-        <p>Our video collection will feature original videos and content we have permission to share.</p>
-        <p>Video monetization will be added when an eligible service is connected.</p>
-      </article>
+        <input
+          class="search"
+          id="videoSearch"
+          type="search"
+          placeholder="Search videos..."
+          aria-label="Search videos"
+        >
+      </div>
+
+      <div class="video-grid" id="videoGrid">
+
+        <article class="video-card" data-title="Featured video">
+          <div class="thumbnail" aria-hidden="true">▶</div>
+
+          <div class="video-info">
+            <h3>Featured Video</h3>
+
+            <p>
+              Video coming soon. A permitted video
+              source has not been connected yet.
+            </p>
+
+            <button class="button video-button" type="button">
+              Coming Soon
+            </button>
+          </div>
+        </article>
+
+        <article class="video-card" data-title="Latest video">
+          <div class="thumbnail" aria-hidden="true">▶</div>
+
+          <div class="video-info">
+            <h3>Latest Video</h3>
+
+            <p>
+              This space is ready for an authorized
+              embedded video.
+            </p>
+
+            <button class="button video-button" type="button">
+              Coming Soon
+            </button>
+          </div>
+        </article>
+
+        <article class="video-card" data-title="Popular video">
+          <div class="thumbnail" aria-hidden="true">▶</div>
+
+          <div class="video-info">
+            <h3>Popular Video</h3>
+
+            <p>
+              A video will appear here after a
+              suitable provider is connected.
+            </p>
+
+            <button class="button video-button" type="button">
+              Coming Soon
+            </button>
+          </div>
+        </article>
+
+      </div>
+
+      <p id="noResults" class="notice hidden">
+        No matching videos found.
+      </p>
     </section>
 
-    <section id="offers">
-      <h2 class="section-title">Recommended Offers</h2>
+    <section id="advertising">
+      <h2>Advertising</h2>
 
-      <article class="card">
-        <h3>Discover Useful Products & Services</h3>
-        <p>Recommended products and services will be listed here.</p>
-        <p>Affiliate links will be added after suitable programmes approve our application.</p>
-      </article>
-    </section>
-
-    <section>
-      <h2 class="section-title">Advertisements</h2>
-
-      <div class="notice">
-        <p>Advertising space will be activated after an eligible advertising network approves the website.</p>
+      <div class="ad-space">
+        <p>
+          Advertising space<br>
+          Ads will appear here after the website
+          is approved and an authorized ad code
+          is installed.
+        </p>
       </div>
     </section>
 
-    <section id="about">
-      <h2 class="section-title">About NaughtyArena</h2>
+    <section id="privacy" class="legal-card">
+      <h2>Privacy Policy</h2>
 
-      <div class="card">
-        <p>NaughtyArena is an entertainment website designed to share interesting stories, movie reviews, videos and recommendations.</p>
-      </div>
+      <p>
+        NaughtyArena should explain what information
+        it collects, how it is used, how cookies or
+        similar technologies are used, and how
+        advertising partners may process information.
+      </p>
+
+      <p>
+        This is a placeholder, not a complete privacy
+        policy. Before launch, replace it with a policy
+        that accurately describes your actual services,
+        hosting, analytics, advertising partners and
+        applicable legal obligations.
+      </p>
     </section>
 
-    <section>
-      <h2 class="section-title">Contact</h2>
+    <section id="terms" class="legal-card">
+      <h2>Terms and Content Policy</h2>
 
-      <div class="card">
-        <p>For enquiries, please add your contact email when one is ready.</p>
-      </div>
+      <p>
+        Access is restricted to people who meet the
+        applicable legal age requirement. All published
+        content must be lawful and shared with the
+        necessary rights and permissions.
+      </p>
+
+      <p>
+        Do not upload or embed content without
+        authorization. Content involving minors,
+        non-consensual sexual material, or other
+        unlawful sexual content is prohibited.
+      </p>
+
+      <p>
+        These introductory terms need to be reviewed
+        and completed before the website launches.
+      </p>
+    </section>
+
+    <section id="contact" class="legal-card">
+      <h2>Contact and Copyright</h2>
+
+      <p>
+        For copyright complaints, privacy requests,
+        or other enquiries, provide a working contact
+        method before launching the website.
+      </p>
+
+      <p>
+        Website owner: NaughtyArena
+      </p>
+
+      <p>
+        Contact email: Add your working email address
+        before publishing this page.
+      </p>
     </section>
 
   </main>
 
   <footer>
-    <p>&copy; 2026 NaughtyArena. All rights reserved.</p>
-    <a href="#about">About</a>
+    <p>
+      &copy; <span id="year"></span> NaughtyArena.
+      All rights reserved.
+    </p>
+
+    <p>Adults only · 18+</p>
+
+    <a href="#privacy">Privacy Policy</a>
+    <a href="#terms">Terms</a>
+    <a href="#contact">Contact</a>
     <a href="#home">Back to top</a>
   </footer>
 
+  <script>
+    const ageOverlay = document.getElementById("ageOverlay");
+    const enterButton = document.getElementById("enterButton");
+    const leaveButton = document.getElementById("leaveButton");
+
+    function unlockWebsite() {
+      ageOverlay.classList.add("hidden");
+      document.body.classList.remove("age-locked");
+    }
+
+    if (sessionStorage.getItem("naughtyArenaAgeConfirmed") === "yes") {
+      unlockWebsite();
+    }
+
+    enterButton.addEventListener("click", function () {
+      sessionStorage.setItem("naughtyArenaAgeConfirmed", "yes");
+      unlockWebsite();
+    });
+
+    leaveButton.addEventListener("click", function () {
+      window.location.href = "about:blank";
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    document.getElementById("videoSearch").addEventListener(
+      "input",
+      function () {
+        const query = this.value.toLowerCase().trim();
+        const cards = document.querySelectorAll(".video-card");
+        let visibleCount = 0;
+
+        cards.forEach(function (card) {
+          const title = card.dataset.title.toLowerCase();
+          const visible = title.includes(query);
+
+          card.classList.toggle("hidden", !visible);
+
+          if (visible) {
+            visibleCount++;
+          }
+        });
+
+        document.getElementById("noResults")
+          .classList.toggle("hidden", visibleCount > 0);
+      }
+    );
+
+    document.querySelectorAll(".video-button").forEach(function (button) {
+      button.addEventListener("click", function () {
+        alert(
+          "Videos are not connected yet. " +
+          "A permitted video provider must be connected first."
+        );
+      });
+    });
+  </script>
+
 </body>
-</html>
+  </html>
