@@ -2,29 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="description"
-    content="NaughtyArena — an adults-only video discovery website."
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b0b0b">
+  <meta name="description" content="NaughtyArena — an adults-only video gallery.">
 
   <title>NaughtyArena | Adult Video Gallery</title>
 
   <style>
     :root {
-      --background: #0b0b0b;
-      --surface: #171717;
-      --surface-light: #222222;
-      --primary: #e50924;
-      --primary-hover: #ff243d;
-      --text: #ffffff;
+      --bg: #0b0b0b;
+      --card: #171717;
+      --red: #e50924;
+      --white: #ffffff;
       --muted: #aaaaaa;
       --border: #303030;
     }
@@ -40,19 +29,14 @@
     }
 
     body {
-      background: var(--background);
-      color: var(--text);
+      background: var(--bg);
+      color: var(--white);
       font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    body.no-scroll {
+    body.locked {
       overflow: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
     }
 
     button,
@@ -64,25 +48,29 @@
       cursor: pointer;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     /* HEADER */
 
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(11, 11, 11, 0.97);
+      z-index: 10;
+      background: #101010;
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(10px);
     }
 
     .header-inner {
-      max-width: 1250px;
+      max-width: 1200px;
       margin: auto;
-      padding: 16px;
+      padding: 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 15px;
       flex-wrap: wrap;
     }
 
@@ -93,123 +81,116 @@
     }
 
     .logo span {
-      color: var(--primary);
+      color: var(--red);
     }
 
-    .header-links {
+    nav {
       display: flex;
-      align-items: center;
-      gap: 15px;
-      font-size: 13px;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
       color: var(--muted);
+      font-size: 12px;
     }
 
-    .header-links a:hover {
-      color: var(--primary);
+    nav a:hover {
+      color: var(--red);
     }
-
-    /* SEARCH */
 
     .search-area {
-      max-width: 1250px;
+      max-width: 1200px;
       margin: auto;
-      padding: 0 16px 16px;
+      padding: 0 15px 15px;
     }
 
-    .search-box {
-      width: 100%;
+    .search-form {
       display: flex;
       gap: 8px;
     }
 
-    .search-box input {
+    .search-form input {
       flex: 1;
+      width: 0;
       min-width: 0;
-      padding: 13px 15px;
+      padding: 12px;
+      color: white;
+      background: #1c1c1c;
       border: 1px solid var(--border);
-      border-radius: 7px;
+      border-radius: 6px;
       outline: none;
-      background: var(--surface);
-      color: white;
     }
 
-    .search-box input:focus {
-      border-color: var(--primary);
+    .search-form input:focus {
+      border-color: var(--red);
     }
 
-    .search-box button {
-      padding: 12px 18px;
-      border: none;
-      border-radius: 7px;
-      background: var(--primary);
+    .search-form button,
+    .primary-button {
+      padding: 12px 16px;
       color: white;
+      background: var(--red);
+      border: 0;
+      border-radius: 6px;
       font-weight: bold;
-    }
-
-    .search-box button:hover {
-      background: var(--primary-hover);
     }
 
     /* HERO */
 
     .hero {
-      padding: 35px 16px;
+      padding: 35px 15px;
       background:
-        radial-gradient(
-          ellipse at top right,
-          rgba(229, 9, 36, 0.2),
-          transparent 65%
-        ),
-        var(--background);
+        radial-gradient(ellipse at top right, #390b13, transparent 65%),
+        #0b0b0b;
     }
 
     .hero-inner {
-      max-width: 1250px;
+      max-width: 1200px;
       margin: auto;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 5px 9px;
+      border: 1px solid var(--red);
+      border-radius: 4px;
+      color: #ff8492;
+      font-size: 11px;
+      font-weight: bold;
     }
 
     .hero h1 {
-      font-size: clamp(28px, 5vw, 43px);
-      line-height: 1.2;
       margin-bottom: 10px;
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.2;
     }
 
     .hero h1 span {
-      color: var(--primary);
+      color: var(--red);
     }
 
     .hero p {
+      max-width: 600px;
       color: var(--muted);
-      max-width: 650px;
       font-size: 14px;
     }
 
-    .adult-badge {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 5px 10px;
-      border: 1px solid var(--primary);
-      border-radius: 5px;
-      color: #ff7181;
-      font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    /* MAIN CONTENT */
+    /* MAIN */
 
     main {
-      max-width: 1250px;
+      max-width: 1200px;
       margin: auto;
-      padding: 20px 16px 50px;
+      padding: 25px 15px 45px;
     }
 
     .section-heading {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 20px;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
     }
 
     .section-heading h2 {
@@ -223,50 +204,51 @@
 
     /* VIDEO PLAYER */
 
-    .player-section {
+    #playerSection {
       display: none;
-      margin-bottom: 35px;
-      padding: 15px;
-      background: var(--surface);
+      margin-bottom: 30px;
+      padding: 12px;
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 8px;
+      scroll-margin-top: 120px;
     }
 
-    .player-section.active {
+    #playerSection.visible {
       display: block;
     }
 
-    .player-top {
+    .player-heading {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 10px;
       margin-bottom: 12px;
     }
 
-    .player-top h2 {
-      font-size: 17px;
+    .player-heading h2 {
+      font-size: 16px;
       overflow-wrap: anywhere;
     }
 
-    .close-player {
-      flex-shrink: 0;
-      border: none;
-      border-radius: 5px;
-      padding: 7px 11px;
+    #closePlayer {
+      padding: 7px 10px;
+      border: 0;
+      border-radius: 4px;
       background: #333;
       color: white;
     }
 
-    .player-frame {
+    #videoPlayer {
+      display: block;
       width: 100%;
       aspect-ratio: 16 / 9;
-      border: none;
-      border-radius: 6px;
+      border: 0;
+      border-radius: 5px;
       background: black;
     }
 
-    .player-help {
+    .player-note {
       margin-top: 10px;
       color: var(--muted);
       font-size: 12px;
@@ -274,115 +256,79 @@
 
     /* VIDEO GRID */
 
-    .video-grid {
+    #videoGrid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 20px 15px;
+      gap: 18px 13px;
     }
 
     .video-card {
       min-width: 0;
-      cursor: pointer;
-      background: var(--surface);
-      border: 1px solid transparent;
-      border-radius: 8px;
       overflow: hidden;
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
+      background: var(--card);
+      border: 1px solid #242424;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
     }
 
     .video-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--primary);
-    }
-
-    .thumbnail-wrap {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      background: #252525;
+      border-color: var(--red);
+      transform: translateY(-2px);
     }
 
     .thumbnail {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: linear-gradient(135deg, #351018, #151515, #300710);
+    }
+
+    .thumbnail img {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
 
-    .thumbnail-placeholder {
-      width: 100%;
-      height: 100%;
+    .placeholder {
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
+      align-items: center;
       gap: 7px;
-      background:
-        linear-gradient(
-          135deg,
-          #291015,
-          #111111 55%,
-          #330812
-        );
-      color: #ff6477;
+      color: #ff7181;
     }
 
-    .play-symbol {
-      width: 45px;
-      height: 45px;
+    .play-icon {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-left: 4px;
+      width: 43px;
+      height: 43px;
+      padding-left: 3px;
       border-radius: 50%;
-      background: var(--primary);
+      background: var(--red);
       color: white;
-      font-size: 19px;
+      font-size: 18px;
     }
 
-    .placeholder-label {
+    .placeholder small {
       font-size: 10px;
       font-weight: bold;
       letter-spacing: 1px;
     }
 
-    .play-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.12);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .video-card:hover .play-overlay {
-      opacity: 1;
-    }
-
-    .play-overlay span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      padding-left: 4px;
-      border-radius: 50%;
-      background: var(--primary);
-      font-size: 20px;
-    }
-
     .video-info {
-      padding: 11px;
+      padding: 10px;
     }
 
     .video-title {
       margin-bottom: 5px;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.4;
       overflow-wrap: anywhere;
     }
@@ -392,79 +338,71 @@
       font-size: 11px;
     }
 
-    /* EMPTY AND ERROR STATES */
+    /* MESSAGES */
 
-    .empty-state {
+    .message {
       display: none;
-      padding: 35px 15px;
-      text-align: center;
-      color: var(--muted);
-      background: var(--surface);
-      border-radius: 8px;
-    }
-
-    .empty-state h3 {
-      margin-bottom: 8px;
-      color: white;
-    }
-
-    .status-message {
-      display: none;
-      margin-bottom: 20px;
+      margin: 0 0 18px;
       padding: 12px;
       border-radius: 6px;
       background: #35151a;
-      color: #ffb7c0;
+      color: #ffc1c8;
       font-size: 13px;
       overflow-wrap: anywhere;
     }
 
-    /* INFORMATION SECTIONS */
+    #emptyState {
+      display: none;
+      padding: 30px 15px;
+      text-align: center;
+      background: var(--card);
+      border-radius: 7px;
+      color: var(--muted);
+    }
+
+    #emptyState h3 {
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    /* INFORMATION */
 
     .info-section {
-      margin-top: 45px;
-      padding: 22px;
+      margin-top: 35px;
+      padding: 20px;
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--surface);
-      scroll-margin-top: 150px;
+      border-radius: 7px;
+      scroll-margin-top: 125px;
     }
 
     .info-section h2 {
       margin-bottom: 10px;
-      font-size: 20px;
+      font-size: 19px;
     }
 
     .info-section p {
       margin-bottom: 10px;
       color: var(--muted);
-      font-size: 14px;
-    }
-
-    .info-section a {
-      color: #ff7181;
+      font-size: 13px;
     }
 
     /* FOOTER */
 
     footer {
-      padding: 25px 16px;
+      padding: 25px 15px;
       border-top: 1px solid var(--border);
       text-align: center;
       color: var(--muted);
       font-size: 12px;
     }
 
-    footer p {
-      margin: 5px 0;
-    }
+    /* AGE SCREEN */
 
-    /* AGE VERIFICATION */
-
-    .age-overlay {
+    #ageOverlay {
       position: fixed;
       inset: 0;
-      z-index: 1000;
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -472,24 +410,28 @@
       background: rgba(0, 0, 0, 0.97);
     }
 
+    #ageOverlay[hidden] {
+      display: none !important;
+    }
+
     .age-box {
       width: 100%;
-      max-width: 430px;
-      padding: 30px 22px;
+      max-width: 420px;
+      padding: 28px 22px;
       text-align: center;
       background: #151515;
-      border: 1px solid #3a2528;
-      border-radius: 12px;
+      border: 1px solid #49232a;
+      border-radius: 10px;
     }
 
     .age-logo {
       margin-bottom: 15px;
-      font-size: 29px;
+      font-size: 28px;
       font-weight: 900;
     }
 
     .age-logo span {
-      color: var(--primary);
+      color: var(--red);
     }
 
     .age-box h2 {
@@ -503,60 +445,62 @@
       font-size: 13px;
     }
 
-    .enter-button,
-    .leave-button {
+    #enterButton,
+    #leaveButton {
+      display: block;
       width: 100%;
       padding: 13px;
       border-radius: 6px;
       font-weight: bold;
     }
 
-    .enter-button {
+    #enterButton {
       margin-bottom: 10px;
-      border: none;
-      background: var(--primary);
+      border: 0;
+      background: var(--red);
       color: white;
     }
 
-    .leave-button {
+    #leaveButton {
       border: 1px solid #444;
       background: transparent;
       color: white;
     }
 
-    /* RESPONSIVE LAYOUT */
-
     @media (max-width: 900px) {
-      .video-grid {
+      #videoGrid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
     @media (max-width: 600px) {
       .header-inner {
-        gap: 12px;
+        gap: 10px;
       }
 
       .logo {
         font-size: 23px;
       }
 
-      .header-links {
+      nav {
         gap: 10px;
+      }
+
+      nav a {
         font-size: 11px;
       }
 
       .hero {
-        padding: 27px 16px;
+        padding: 27px 15px;
       }
 
-      .video-grid {
+      #videoGrid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px 10px;
+        gap: 13px 9px;
       }
 
       .video-info {
-        padding: 9px;
+        padding: 8px;
       }
 
       .video-title {
@@ -564,61 +508,47 @@
       }
 
       .info-section {
-        padding: 16px;
+        padding: 15px;
       }
     }
   </style>
 </head>
 
-<body class="no-scroll">
+<body class="locked">
 
-  <!-- AGE VERIFICATION -->
+  <!-- AGE CONFIRMATION -->
 
-  <div class="age-overlay" id="ageOverlay">
+  <div id="ageOverlay">
     <div class="age-box">
 
-      <div class="age-logo">
-        Naughty<span>Arena</span>
-      </div>
+      <div class="age-logo">Naughty<span>Arena</span></div>
 
       <h2>Adults Only — 18+</h2>
 
       <p>
-        This website is intended only for adults aged 18 or older.
-        By continuing, you confirm that you are at least 18 and that
-        accessing this content is lawful where you live.
+        This website is intended for adults aged 18 or older.
+        Continue only if you meet the legal age requirement where you live.
       </p>
 
-      <button
-        class="enter-button"
-        id="enterButton"
-        type="button"
-        onclick="confirmAge()"
-      >
+      <button id="enterButton" type="button">
         I am 18+ — Enter
       </button>
 
-      <button
-        class="leave-button"
-        type="button"
-        onclick="leaveSite()"
-      >
+      <button id="leaveButton" type="button">
         I am under 18 — Leave
       </button>
 
     </div>
   </div>
 
-  <!-- HEADER -->
+  <!-- WEBSITE HEADER -->
 
   <header>
     <div class="header-inner">
 
-      <a href="#" class="logo">
-        Naughty<span>Arena</span>
-      </a>
+      <a class="logo" href="#">Naughty<span>Arena</span></a>
 
-      <nav class="header-links" aria-label="Main navigation">
+      <nav>
         <a href="#videos">Videos</a>
         <a href="#about">About</a>
         <a href="#privacy">Privacy</a>
@@ -628,11 +558,11 @@
     </div>
 
     <div class="search-area">
-      <form class="search-box" id="searchForm">
+      <form class="search-form" id="searchForm">
 
         <input
-          type="search"
           id="searchInput"
+          type="search"
           placeholder="Search video titles..."
           aria-label="Search video titles"
         >
@@ -643,64 +573,52 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- WELCOME -->
 
   <section class="hero">
     <div class="hero-inner">
 
-      <span class="adult-badge">18+ ADULTS ONLY</span>
+      <span class="badge">18+ ADULTS ONLY</span>
 
-      <h1>
-        Welcome to <span>NaughtyArena</span>
-      </h1>
+      <h1>Welcome to <span>NaughtyArena</span></h1>
 
       <p>
         Browse the video gallery and select a video to open its player.
-        Only lawful, consensually produced adult content is permitted.
+        External videos require valid embed links and may have provider restrictions.
       </p>
 
     </div>
   </section>
 
-  <!-- MAIN -->
+  <!-- MAIN CONTENT -->
 
   <main>
 
-    <!-- PLAYER -->
+    <!-- VIDEO PLAYER -->
 
-    <section
-      class="player-section"
-      id="playerSection"
-      aria-label="Video player"
-    >
+    <section id="playerSection">
 
-      <div class="player-top">
+      <div class="player-heading">
 
         <h2 id="playerTitle">Now Playing</h2>
 
-        <button
-          class="close-player"
-          id="closePlayer"
-          type="button"
-        >
+        <button id="closePlayer" type="button">
           Close ✕
         </button>
 
       </div>
 
       <iframe
-        class="player-frame"
         id="videoPlayer"
-        title="Adult video player"
         src="about:blank"
+        title="Video player"
         allow="fullscreen; picture-in-picture"
         allowfullscreen
         referrerpolicy="strict-origin-when-cross-origin"
       ></iframe>
 
-      <p class="player-help" id="playerHelp">
-        The video is hosted by a third-party provider. Playback depends
-        on that provider's embedding and regional restrictions.
+      <p class="player-note">
+        Playback is provided by the external video host.
       </p>
 
     </section>
@@ -710,32 +628,17 @@
     <section id="videos">
 
       <div class="section-heading">
-
         <h2>Latest Videos</h2>
-
-        <span class="video-count" id="videoCount">
-          Loading videos...
-        </span>
-
+        <span class="video-count" id="videoCount">0 videos</span>
       </div>
 
-      <div
-        class="status-message"
-        id="statusMessage"
-        role="status"
-      ></div>
+      <div class="message" id="message" role="status"></div>
 
-      <div class="video-grid" id="videoGrid"></div>
+      <div id="videoGrid"></div>
 
-      <div class="empty-state" id="emptyState">
-
+      <div id="emptyState">
         <h3>No videos found</h3>
-
-        <p>
-          There are no matching videos. Try another search or add video
-          entries to the website's video list.
-        </p>
-
+        <p>Try another search term.</p>
       </div>
 
     </section>
@@ -743,60 +646,48 @@
     <!-- ABOUT -->
 
     <section class="info-section" id="about">
-
       <h2>About NaughtyArena</h2>
 
       <p>
         NaughtyArena is an adults-only video discovery website.
-        Video playback may be provided by external hosting services.
+        Videos may be hosted by external services.
       </p>
 
       <p>
-        We do not permit content involving minors, non-consensual
-        material, or content uploaded without appropriate authorization.
+        Only lawful content featuring consenting adults aged 18 or older
+        and content you have permission to share should be included.
       </p>
-
     </section>
 
     <!-- PRIVACY -->
 
     <section class="info-section" id="privacy">
-
       <h2>Privacy Policy</h2>
 
       <p>
-        This website uses browser storage to remember age confirmation
-        on the device. Clearing browser data may reset that confirmation.
+        This website may use browser storage to remember your age confirmation.
+        Clearing browser data can reset that preference.
       </p>
 
       <p>
         Third-party video providers may collect information when their
-        embedded players are loaded. Review their privacy policies
-        before using their services.
+        embedded players load. Review their privacy policies.
       </p>
 
       <p>
-        The search box filters video titles locally in your browser.
+        The search feature filters video titles locally in your browser.
       </p>
-
     </section>
 
     <!-- CONTACT -->
 
     <section class="info-section" id="contact">
-
       <h2>Contact</h2>
 
       <p>
-        For questions, content removal requests, or copyright concerns,
-        contact the website owner using your published contact email.
+        Replace this text with your real contact email before publishing.
+        Use it for copyright questions, content removal requests, and other enquiries.
       </p>
-
-      <p>
-        Replace this paragraph with your actual contact email before
-        publishing the website.
-      </p>
-
     </section>
 
   </main>
@@ -804,41 +695,31 @@
   <!-- FOOTER -->
 
   <footer>
-
     <p>
-      &copy; <span id="currentYear"></span> NaughtyArena.
-      All rights reserved.
+      &copy; <span id="year"></span> NaughtyArena. All rights reserved.
     </p>
 
     <p>Adults only. 18+.</p>
 
-    <p>
-      External videos are provided by their respective hosting services.
-    </p>
-
+    <p>External videos remain subject to their hosting providers' rules.</p>
   </footer>
+
+  <!-- JAVASCRIPT -->
 
   <script>
     "use strict";
 
     /*
-      ==========================================
-      ADD YOUR VIDEO DETAILS IN THIS LIST
-      ==========================================
+      VIDEO LIST
 
-      title:
-        The exact title you want to display.
+      Each video needs:
+      - A unique id
+      - A title
+      - An optional thumbnail URL
+      - An authorized HTTPS embed URL
 
-      thumbnail:
-        A thumbnail URL that you have permission to use.
-        Leave it empty to show the default placeholder.
-
-      embedUrl:
-        The provider's official embed URL.
-
-      IMPORTANT:
-        Replace the example entries with videos you are authorized
-        to embed. A valid embed URL is required for playback.
+      The two entries below are visible demonstration cards.
+      Replace their titles and empty embed URLs with real details.
     */
 
     const videos = [
@@ -848,70 +729,19 @@
         thumbnail: "",
         embedUrl: ""
       },
-
       {
         id: "video-2",
         title: "Second Adult Video",
         thumbnail: "",
         embedUrl: ""
       }
-
     ];
 
-
-    /*
-      ==========================================
-      AGE VERIFICATION
-      ==========================================
-    */
-
-    function confirmAge() {
-      const overlay = document.getElementById("ageOverlay");
-
-      overlay.style.display = "none";
-
-      document.body.classList.remove("no-scroll");
-
-      try {
-        localStorage.setItem(
-          "naughtyArenaAgeConfirmed",
-          "yes"
-        );
-      } catch (error) {
-        // The website can still be used if storage is unavailable.
-      }
-    }
-
-
-    function leaveSite() {
-      window.location.href = "https://www.google.com/";
-    }
-
-
-    function restoreAgeConfirmation() {
-      try {
-        if (
-          localStorage.getItem("naughtyArenaAgeConfirmed") === "yes"
-        ) {
-          document.getElementById("ageOverlay").style.display = "none";
-          document.body.classList.remove("no-scroll");
-        }
-      } catch (error) {
-        // Show the confirmation screen if storage is unavailable.
-      }
-    }
-
-
-    /*
-      ==========================================
-      VIDEO GALLERY
-      ==========================================
-    */
-
+    const ageOverlay = document.getElementById("ageOverlay");
     const videoGrid = document.getElementById("videoGrid");
     const videoCount = document.getElementById("videoCount");
     const emptyState = document.getElementById("emptyState");
-    const statusMessage = document.getElementById("statusMessage");
+    const message = document.getElementById("message");
     const searchInput = document.getElementById("searchInput");
 
     const playerSection = document.getElementById("playerSection");
@@ -920,77 +750,232 @@
 
     let currentSearch = "";
 
+    /*
+      AGE SCREEN
 
-    function showStatus(message) {
-      statusMessage.textContent = message;
-      statusMessage.style.display = message ? "block" : "none";
+      The Enter button is attached directly to this JavaScript.
+      Age confirmation still works if localStorage is blocked.
+    */
+
+    function enterWebsite() {
+      ageOverlay.hidden = true;
+      document.body.classList.remove("locked");
+
+      try {
+        localStorage.setItem("naughtyArenaAgeConfirmed", "yes");
+      } catch (error) {
+        // Continue without persistent storage.
+      }
     }
 
+    function leaveWebsite() {
+      window.location.replace("https://www.google.com/");
+    }
+
+    document
+      .getElementById("enterButton")
+      .addEventListener("click", enterWebsite);
+
+    document
+      .getElementById("leaveButton")
+      .addEventListener("click", leaveWebsite);
+
+    try {
+      if (localStorage.getItem("naughtyArenaAgeConfirmed") === "yes") {
+        ageOverlay.hidden = true;
+        document.body.classList.remove("locked");
+      }
+    } catch (error) {
+      // Keep the age screen visible until the user confirms.
+    }
+
+    /*
+      VIDEO THUMBNAILS
+    */
 
     function createThumbnail(video) {
-      const wrapper = document.createElement("div");
-      wrapper.className = "thumbnail-wrap";
+      const thumbnail = document.createElement("div");
+      thumbnail.className = "thumbnail";
 
-      if (video.thumbnail) {
-        const image = document.createElement("img");
+      if (video.thumbnail && video.thumbnail.trim() !== "") {
+        const img = document.createElement("img");
 
-        image.className = "thumbnail";
-        image.src = video.thumbnail;
-        image.alt = video.title;
-        image.loading = "lazy";
+        img.src = video.thumbnail;
+        img.alt = video.title;
+        img.loading = "lazy";
 
-        image.onerror = function () {
-          wrapper.innerHTML = "";
+        img.addEventListener("error", function () {
+          thumbnail.innerHTML = "";
+          thumbnail.appendChild(createPlaceholder());
+        }, { once: true });
 
-          const placeholder = document.createElement("div");
-          placeholder.className = "thumbnail-placeholder";
-
-          const play = document.createElement("div");
-          play.className = "play-symbol";
-          play.textContent = "▶";
-
-          const label = document.createElement("div");
-          label.className = "placeholder-label";
-          label.textContent = "NAUGHTYARENA";
-
-          placeholder.append(play, label);
-          wrapper.appendChild(placeholder);
-        };
-
-        wrapper.appendChild(image);
-
+        thumbnail.appendChild(img);
       } else {
-        const placeholder = document.createElement("div");
-        placeholder.className = "thumbnail-placeholder";
-
-        const play = document.createElement("div");
-        play.className = "play-symbol";
-        play.textContent = "▶";
-
-        const label = document.createElement("div");
-        label.className = "placeholder-label";
-        label.textContent = "NAUGHTYARENA";
-
-        placeholder.append(play, label);
-        wrapper.appendChild(placeholder);
+        thumbnail.appendChild(createPlaceholder());
       }
 
-      const overlay = document.createElement("div");
-      overlay.className = "play-overlay";
-
-      const playOverlayIcon = document.createElement("span");
-      playOverlayIcon.textContent = "▶";
-
-      overlay.appendChild(playOverlayIcon);
-      wrapper.appendChild(overlay);
-
-      return wrapper;
+      return thumbnail;
     }
 
+    function createPlaceholder() {
+      const placeholder = document.createElement("div");
+      placeholder.className = "placeholder";
+
+      const icon = document.createElement("div");
+      icon.className = "play-icon";
+      icon.textContent = "▶";
+
+      const label = document.createElement("small");
+      label.textContent = "NAUGHTYARENA";
+
+      placeholder.append(icon, label);
+
+      return placeholder;
+    }
+
+    /*
+      VIDEO CARDS
+    */
 
     function createVideoCard(video) {
       const card = document.createElement("article");
-
       card.className = "video-card";
       card.tabIndex = 0;
-      card.setAttribute("role", "butt
+      card.setAttribute("role", "button");
+      card.setAttribute("aria-label", "Play " + video.title);
+
+      const thumbnail = createThumbnail(video);
+
+      const info = document.createElement("div");
+      info.className = "video-info";
+
+      const title = document.createElement("h3");
+      title.className = "video-title";
+      title.textContent = video.title;
+
+      const meta = document.createElement("p");
+      meta.className = "video-meta";
+      meta.textContent = "18+ · Watch video";
+
+      info.append(title, meta);
+      card.append(thumbnail, info);
+
+      card.addEventListener("click", function () {
+        playVideo(video);
+      });
+
+      card.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          playVideo(video);
+        }
+      });
+
+      return card;
+    }
+
+    /*
+      DISPLAY VIDEO GALLERY
+    */
+
+    function renderVideos() {
+      videoGrid.innerHTML = "";
+
+      const filteredVideos = videos.filter(function (video) {
+        return video.title
+          .toLowerCase()
+          .includes(currentSearch.toLowerCase());
+      });
+
+      filteredVideos.forEach(function (video) {
+        videoGrid.appendChild(createVideoCard(video));
+      });
+
+      videoCount.textContent =
+        filteredVideos.length +
+        (filteredVideos.length === 1 ? " video" : " videos");
+
+      emptyState.style.display =
+        filteredVideos.length === 0 ? "block" : "none";
+
+      message.style.display = "none";
+      message.textContent = "";
+    }
+
+    /*
+      OPEN VIDEO PLAYER
+    */
+
+    function playVideo(video) {
+      if (!video.embedUrl || !video.embedUrl.trim()) {
+        message.textContent =
+          '"' + video.title +
+          '" is a demonstration card. Add its valid embed URL in the videos list to enable playback.';
+
+        message.style.display = "block";
+
+        return;
+      }
+
+      let url;
+
+      try {
+        url = new URL(video.embedUrl);
+      } catch (error) {
+        message.textContent = "This video has an invalid embed URL.";
+        message.style.display = "block";
+        return;
+      }
+
+      if (url.protocol !== "https:") {
+        message.textContent = "Video embed URLs must use HTTPS.";
+        message.style.display = "block";
+        return;
+      }
+
+      videoPlayer.src = url.href;
+      playerTitle.textContent = video.title;
+      playerSection.classList.add("visible");
+
+      message.style.display = "none";
+
+      playerSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    /*
+      CLOSE VIDEO PLAYER
+    */
+
+    document
+      .getElementById("closePlayer")
+      .addEventListener("click", function () {
+        videoPlayer.src = "about:blank";
+        playerSection.classList.remove("visible");
+      });
+
+    /*
+      SEARCH
+    */
+
+    document
+      .getElementById("searchForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        currentSearch = searchInput.value.trim();
+        renderVideos();
+      });
+
+    searchInput.addEventListener("input", function () {
+      currentSearch = searchInput.value.trim();
+      renderVideos();
+    });
+
+    /*
+      INITIALIZE
+    */
+
+    document
