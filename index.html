@@ -3,44 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b0b0b">
-  <meta name="description" content="NaughtyArena — an adults-only video gallery.">
 
-  <title>NaughtyArena | Adult Video Gallery</title>
+  <title>NaughtyArena</title>
 
   <style>
-    :root {
-      --bg: #0b0b0b;
-      --card: #171717;
-      --red: #e50924;
-      --white: #ffffff;
-      --muted: #aaaaaa;
-      --border: #303030;
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.5;
+      font-family: Arial, sans-serif;
+      background: #101010;
+      color: white;
+      min-height: 100vh;
     }
 
-    body.locked {
-      overflow: hidden;
-    }
-
-    button,
-    input {
+    button, input {
       font: inherit;
     }
 
@@ -48,356 +28,11 @@
       cursor: pointer;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    [hidden] {
+      display: none !important;
     }
 
-    /* HEADER */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: #101010;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .header-inner {
-      max-width: 1200px;
-      margin: auto;
-      padding: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: 900;
-      letter-spacing: -1px;
-    }
-
-    .logo span {
-      color: var(--red);
-    }
-
-    nav {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    nav a:hover {
-      color: var(--red);
-    }
-
-    .search-area {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 15px 15px;
-    }
-
-    .search-form {
-      display: flex;
-      gap: 8px;
-    }
-
-    .search-form input {
-      flex: 1;
-      width: 0;
-      min-width: 0;
-      padding: 12px;
-      color: white;
-      background: #1c1c1c;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      outline: none;
-    }
-
-    .search-form input:focus {
-      border-color: var(--red);
-    }
-
-    .search-form button,
-    .primary-button {
-      padding: 12px 16px;
-      color: white;
-      background: var(--red);
-      border: 0;
-      border-radius: 6px;
-      font-weight: bold;
-    }
-
-    /* HERO */
-
-    .hero {
-      padding: 35px 15px;
-      background:
-        radial-gradient(ellipse at top right, #390b13, transparent 65%),
-        #0b0b0b;
-    }
-
-    .hero-inner {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .badge {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 5px 9px;
-      border: 1px solid var(--red);
-      border-radius: 4px;
-      color: #ff8492;
-      font-size: 11px;
-      font-weight: bold;
-    }
-
-    .hero h1 {
-      margin-bottom: 10px;
-      font-size: clamp(28px, 5vw, 42px);
-      line-height: 1.2;
-    }
-
-    .hero h1 span {
-      color: var(--red);
-    }
-
-    .hero p {
-      max-width: 600px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* MAIN */
-
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 25px 15px 45px;
-    }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .section-heading h2 {
-      font-size: 22px;
-    }
-
-    .video-count {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    /* VIDEO PLAYER */
-
-    #playerSection {
-      display: none;
-      margin-bottom: 30px;
-      padding: 12px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      scroll-margin-top: 120px;
-    }
-
-    #playerSection.visible {
-      display: block;
-    }
-
-    .player-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .player-heading h2 {
-      font-size: 16px;
-      overflow-wrap: anywhere;
-    }
-
-    #closePlayer {
-      padding: 7px 10px;
-      border: 0;
-      border-radius: 4px;
-      background: #333;
-      color: white;
-    }
-
-    #videoPlayer {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: 0;
-      border-radius: 5px;
-      background: black;
-    }
-
-    .player-note {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    /* VIDEO GRID */
-
-    #videoGrid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px 13px;
-    }
-
-    .video-card {
-      min-width: 0;
-      overflow: hidden;
-      background: var(--card);
-      border: 1px solid #242424;
-      border-radius: 7px;
-      cursor: pointer;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .video-card:hover {
-      border-color: var(--red);
-      transform: translateY(-2px);
-    }
-
-    .thumbnail {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      background: linear-gradient(135deg, #351018, #151515, #300710);
-    }
-
-    .thumbnail img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 7px;
-      color: #ff7181;
-    }
-
-    .play-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 43px;
-      height: 43px;
-      padding-left: 3px;
-      border-radius: 50%;
-      background: var(--red);
-      color: white;
-      font-size: 18px;
-    }
-
-    .placeholder small {
-      font-size: 10px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    .video-info {
-      padding: 10px;
-    }
-
-    .video-title {
-      margin-bottom: 5px;
-      font-size: 13px;
-      line-height: 1.4;
-      overflow-wrap: anywhere;
-    }
-
-    .video-meta {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    /* MESSAGES */
-
-    .message {
-      display: none;
-      margin: 0 0 18px;
-      padding: 12px;
-      border-radius: 6px;
-      background: #35151a;
-      color: #ffc1c8;
-      font-size: 13px;
-      overflow-wrap: anywhere;
-    }
-
-    #emptyState {
-      display: none;
-      padding: 30px 15px;
-      text-align: center;
-      background: var(--card);
-      border-radius: 7px;
-      color: var(--muted);
-    }
-
-    #emptyState h3 {
-      margin-bottom: 8px;
-      color: white;
-    }
-
-    /* INFORMATION */
-
-    .info-section {
-      margin-top: 35px;
-      padding: 20px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      scroll-margin-top: 125px;
-    }
-
-    .info-section h2 {
-      margin-bottom: 10px;
-      font-size: 19px;
-    }
-
-    .info-section p {
-      margin-bottom: 10px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    /* FOOTER */
-
-    footer {
-      padding: 25px 15px;
-      border-top: 1px solid var(--border);
-      text-align: center;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    /* AGE SCREEN */
+    /* AGE VERIFICATION SCREEN */
 
     #ageOverlay {
       position: fixed;
@@ -406,575 +41,582 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.97);
-    }
-
-    #ageOverlay[hidden] {
-      display: none !important;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top, #452020, transparent 55%),
+        #090909;
+      text-align: center;
     }
 
     .age-box {
       width: 100%;
-      max-width: 420px;
-      padding: 28px 22px;
-      text-align: center;
-      background: #151515;
-      border: 1px solid #49232a;
-      border-radius: 10px;
+      max-width: 440px;
+      padding: 35px 24px;
+      border: 1px solid #633333;
+      border-radius: 16px;
+      background: #171717;
+      box-shadow: 0 15px 50px #000;
     }
 
-    .age-logo {
-      margin-bottom: 15px;
-      font-size: 28px;
+    .logo {
+      color: #ff4242;
+      font-size: 34px;
       font-weight: 900;
+      margin-bottom: 18px;
     }
 
-    .age-logo span {
-      color: var(--red);
-    }
-
-    .age-box h2 {
-      margin-bottom: 10px;
-      font-size: 22px;
+    .age-box h1 {
+      font-size: 25px;
+      margin-bottom: 15px;
     }
 
     .age-box p {
-      margin-bottom: 20px;
-      color: var(--muted);
-      font-size: 13px;
+      color: #ccc;
+      line-height: 1.7;
+      margin-bottom: 25px;
     }
 
-    #enterButton,
-    #leaveButton {
+    .enter-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #e52336;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .enter-button:hover {
+      background: #ff394c;
+    }
+
+    .leave-button {
       display: block;
       width: 100%;
       padding: 13px;
-      border-radius: 6px;
-      font-weight: bold;
-    }
-
-    #enterButton {
-      margin-bottom: 10px;
-      border: 0;
-      background: var(--red);
-      color: white;
-    }
-
-    #leaveButton {
-      border: 1px solid #444;
+      margin-top: 12px;
+      border: 1px solid #555;
+      border-radius: 8px;
       background: transparent;
       color: white;
     }
 
-    @media (max-width: 900px) {
-      #videoGrid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+    .age-note {
+      font-size: 12px;
+      margin-top: 20px;
+      color: #888;
     }
 
-    @media (max-width: 600px) {
-      .header-inner {
-        gap: 10px;
-      }
+    /* MAIN WEBSITE */
 
-      .logo {
-        font-size: 23px;
-      }
+    header {
+      padding: 20px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      background: #191919;
+      border-bottom: 1px solid #303030;
+    }
 
-      nav {
-        gap: 10px;
+    .site-logo {
+      font-size: 27px;
+      font-weight: 900;
+      color: #ff4242;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 16px;
+      font-size: 14px;
+    }
+
+    .hero {
+      padding: 55px 6% 35px;
+      text-align: center;
+      background: linear-gradient(135deg, #301313, #151515);
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 6vw, 43px);
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      color: #ccc;
+      line-height: 1.7;
+    }
+
+    .search-area {
+      padding: 25px 6%;
+      max-width: 750px;
+      margin: auto;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 15px;
+      color: white;
+      background: #202020;
+      border: 1px solid #444;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    #searchInput:focus {
+      border-color: #ff4242;
+    }
+
+    main {
+      padding: 10px 6% 50px;
+    }
+
+    .section-title {
+      margin-bottom: 22px;
+      font-size: 24px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 260px), 1fr)
+      );
+      gap: 22px;
+    }
+
+    .video-card {
+      overflow: hidden;
+      background: #1c1c1c;
+      border: 1px solid #333;
+      border-radius: 10px;
+    }
+
+    .video-thumbnail {
+      min-height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #3b1717, #222);
+      color: #ff5555;
+      font-size: 45px;
+    }
+
+    .video-info {
+      padding: 18px;
+    }
+
+    .video-info h3 {
+      margin-bottom: 10px;
+    }
+
+    .video-info p {
+      margin-bottom: 15px;
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .watch-button {
+      width: 100%;
+      padding: 12px;
+      background: #e52336;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+    }
+
+    #playerSection {
+      margin-top: 35px;
+      padding: 20px;
+      background: #1c1c1c;
+      border-radius: 10px;
+    }
+
+    #playerSection h2 {
+      margin-bottom: 18px;
+    }
+
+    #videoFrame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+      background: black;
+    }
+
+    .player-message {
+      margin-top: 12px;
+      color: #bbb;
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .close-player {
+      padding: 10px 16px;
+      margin-top: 12px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .empty-message {
+      color: #bbb;
+      padding: 20px 0;
+    }
+
+    footer {
+      padding: 30px 6%;
+      background: #191919;
+      border-top: 1px solid #333;
+      color: #aaa;
+      text-align: center;
+      line-height: 2;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #ff6666;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    @media (max-width: 480px) {
+      header {
+        justify-content: center;
+        text-align: center;
       }
 
       nav a {
-        font-size: 11px;
-      }
-
-      .hero {
-        padding: 27px 15px;
-      }
-
-      #videoGrid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 13px 9px;
-      }
-
-      .video-info {
-        padding: 8px;
-      }
-
-      .video-title {
-        font-size: 12px;
-      }
-
-      .info-section {
-        padding: 15px;
+        margin: 0 7px;
       }
     }
   </style>
 </head>
 
-<body class="locked">
+<body>
 
-  <!-- AGE CONFIRMATION -->
+  <!-- AGE CONFIRMATION SCREEN -->
 
-  <div id="ageOverlay">
+  <section id="ageOverlay" aria-labelledby="ageTitle">
     <div class="age-box">
 
-      <div class="age-logo">Naughty<span>Arena</span></div>
+      <div class="logo">NaughtyArena</div>
 
-      <h2>Adults Only — 18+</h2>
-
-      <p>
-        This website is intended for adults aged 18 or older.
-        Continue only if you meet the legal age requirement where you live.
-      </p>
-
-      <button id="enterButton" type="button">
-        I am 18+ — Enter
-      </button>
-      
-
-      <button id="leaveButton" type="button">
-        I am under 18 — Leave
-      </button>
-
-    </div> 
-  </div>
-
-  <header>
-    <div class="header-inner">
-
-      <a class="logo" href="#">Naughty<span>Arena</span></a>
-
-      <nav>
-        <a href="#videos">Videos</a>
-        <a href="#about">About</a>
-        <a href="#privacy">Privacy</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-    </div>
-
-    <div class="search-area">
-      <form class="search-form" id="searchForm">
-
-        <input
-          id="searchInput"
-          type="search"
-          placeholder="Search video titles..."
-          aria-label="Search video titles"
-        >
-
-        <button type="submit">Search</button>
-
-      </form>
-    </div>
-  </header>
-
-  <!-- WELCOME -->
-
-  <section class="hero">
-    <div class="hero-inner">
-
-      <span class="badge">18+ ADULTS ONLY</span>
-
-      <h1>Welcome to <span>NaughtyArena</span></h1>
+      <h1 id="ageTitle">Adults Only — 18+</h1>
 
       <p>
-        Browse the video gallery and select a video to open its player.
-        External videos require valid embed links and may have provider restrictions.
+        This website is intended exclusively for adults aged 18
+        and over, or the applicable age of majority in their
+        location. By continuing, you confirm that you meet
+        the required age.
       </p>
+
+      <button
+        id="enterButton"
+        class="enter-button"
+        type="button">
+        I'm 18+ — Enter
+      </button>
+
+      <button
+        id="leaveButton"
+        class="leave-button"
+        type="button">
+        I'm under 18 — Leave
+      </button>
+
+      <div class="age-note">
+        Age confirmation is not a substitute for formal age verification.
+      </div>
 
     </div>
   </section>
 
-  <!-- MAIN CONTENT -->
 
-  <main>
+  <!-- MAIN WEBSITE: HIDDEN UNTIL THE BUTTON IS CLICKED -->
 
-    <!-- VIDEO PLAYER -->
+  <div id="website" hidden>
 
-    <section id="playerSection">
+    <header>
+      <div class="site-logo">NaughtyArena</div>
 
-      <div class="player-heading">
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#videos">Videos</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-        <h2 id="playerTitle">Now Playing</h2>
 
-        <button id="closePlayer" type="button">
-          Close ✕
+    <section class="hero" id="home">
+      <h1>Welcome to NaughtyArena</h1>
+
+      <p>
+        Discover your content library in one place.
+      </p>
+    </section>
+
+
+    <section class="search-area">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Search videos..."
+        aria-label="Search videos">
+    </section>
+
+
+    <main id="videos">
+
+      <h2 class="section-title">Featured Videos</h2>
+
+      <div class="video-grid" id="videoGrid">
+
+        <article
+          class="video-card"
+          data-search="first adult video">
+
+          <div class="video-thumbnail">▶</div>
+
+          <div class="video-info">
+            <h3>First Adult Video</h3>
+
+            <p>
+              Replace this placeholder with a title and an
+              authorized video embed.
+            </p>
+
+            <button
+              class="watch-button"
+              type="button"
+              data-video="first">
+              Watch Video
+            </button>
+          </div>
+        </article>
+
+
+        <article
+          class="video-card"
+          data-search="second adult video">
+
+          <div class="video-thumbnail">▶</div>
+
+          <div class="video-info">
+            <h3>Second Adult Video</h3>
+
+            <p>
+              Replace this placeholder with another title and
+              an authorized video embed.
+            </p>
+
+            <button
+              class="watch-button"
+              type="button"
+              data-video="second">
+              Watch Video
+            </button>
+          </div>
+        </article>
+
+      </div>
+
+
+      <section id="playerSection" hidden>
+
+        <h2 id="playerTitle">Video Player</h2>
+
+        <iframe
+          id="videoFrame"
+          title="Video player"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
+
+        <p class="player-message" id="playerMessage">
+          The selected video will appear here when a valid,
+          authorized embed URL is configured.
+        </p>
+
+        <button
+          id="closePlayer"
+          class="close-player"
+          type="button">
+          Close Player
         </button>
 
-      </div>
+      </section>
 
-      <iframe
-        id="videoPlayer"
-        src="about:blank"
-        title="Video player"
-        allow="fullscreen; picture-in-picture"
-        allowfullscreen
-        referrerpolicy="strict-origin-when-cross-origin"
-      ></iframe>
+    </main>
 
-      <p class="player-note">
-        Playback is provided by the external video host.
-      </p>
 
-    </section>
-
-    <!-- VIDEO GALLERY -->
-
-    <section id="videos">
-
-      <div class="section-heading">
-        <h2>Latest Videos</h2>
-        <span class="video-count" id="videoCount">0 videos</span>
-      </div>
-
-      <div class="message" id="message" role="status"></div>
-
-      <div id="videoGrid"></div>
-
-      <div id="emptyState">
-        <h3>No videos found</h3>
-        <p>Try another search term.</p>
-      </div>
-
-    </section>
-
-    <!-- ABOUT -->
-
-    <section class="info-section" id="about">
-      <h2>About NaughtyArena</h2>
-
+    <footer id="about">
       <p>
-        NaughtyArena is an adults-only video discovery website.
-        Videos may be hosted by external services.
+        NaughtyArena — Adults only.
       </p>
 
       <p>
-        Only lawful content featuring consenting adults aged 18 or older
-        and content you have permission to share should be included.
-      </p>
-    </section>
-
-    <!-- PRIVACY -->
-
-    <section class="info-section" id="privacy">
-      <h2>Privacy Policy</h2>
-
-      <p>
-        This website may use browser storage to remember your age confirmation.
-        Clearing browser data can reset that preference.
+        Only publish lawful content featuring consenting adults
+        and use video embeds you are authorized to share.
       </p>
 
-      <p>
-        Third-party video providers may collect information when their
-        embedded players load. Review their privacy policies.
+      <p id="contact">
+        <a href="mailto:contact@example.com">Contact</a>
+        <a href="#about">About</a>
+        <a href="#home">Back to top</a>
       </p>
 
-      <p>
-        The search feature filters video titles locally in your browser.
-      </p>
-    </section>
+    </footer>
 
-    <!-- CONTACT -->
+  </div>
 
-    <section class="info-section" id="contact">
-      <h2>Contact</h2>
-
-      <p>
-        Replace this text with your real contact email before publishing.
-        Use it for copyright questions, content removal requests, and other enquiries.
-      </p>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-
-  <footer>
-    <p>
-      &copy; <span id="year"></span> NaughtyArena. All rights reserved.
-    </p>
-
-    <p>Adults only. 18+.</p>
-
-    <p>External videos remain subject to their hosting providers' rules.</p>
-  </footer>
 
   <!-- JAVASCRIPT -->
 
   <script>
     "use strict";
 
-    /*
-      VIDEO LIST
+    document.addEventListener("DOMContentLoaded", function () {
 
-      Each video needs:
-      - A unique id
-      - A title
-      - An optional thumbnail URL
-      - An authorized HTTPS embed URL
+      const ageOverlay = document.getElementById("ageOverlay");
+      const website = document.getElementById("website");
+      const enterButton = document.getElementById("enterButton");
+      const leaveButton = document.getElementById("leaveButton");
 
-      The two entries below are visible demonstration cards.
-      Replace their titles and empty embed URLs with real details.
-    */
+      const searchInput = document.getElementById("searchInput");
+      const videoCards = document.querySelectorAll(".video-card");
 
-    const videos = [
-      {
-        id: "video-1",
-        title: "First Adult Video",
-        thumbnail: "",
-        embedUrl: ""
-      },
-      {
-        id: "video-2",
-        title: "Second Adult Video",
-        thumbnail: "",
-        embedUrl: ""
-      }
-    ];
+      const playerSection = document.getElementById("playerSection");
+      const playerTitle = document.getElementById("playerTitle");
+      const videoFrame = document.getElementById("videoFrame");
+      const playerMessage = document.getElementById("playerMessage");
+      const closePlayer = document.getElementById("closePlayer");
 
-    const ageOverlay = document.getElementById("ageOverlay");
-    const videoGrid = document.getElementById("videoGrid");
-    const videoCount = document.getElementById("videoCount");
-    const emptyState = document.getElementById("emptyState");
-    const message = document.getElementById("message");
-    const searchInput = document.getElementById("searchInput");
+      /*
+       * IMPORTANT:
+       * This is the function that makes the age button work.
+       * It hides the age screen and reveals the homepage.
+       */
 
-    const playerSection = document.getElementById("playerSection");
-    const playerTitle = document.getElementById("playerTitle");
-    const videoPlayer = document.getElementById("videoPlayer");
-
-    let currentSearch = "";
-
-    /*
-      AGE SCREEN
-
-      The Enter button is attached directly to this JavaScript.
-      Age confirmation still works if localStorage is blocked.
-    */
-
-    function enterWebsite() {
-      ageOverlay.hidden = true;
-      document.body.classList.remove("locked");
-
-      try {
-        localStorage.setItem("naughtyArenaAgeConfirmed", "yes");
-      } catch (error) {
-        // Continue without persistent storage.
-      }
-    }
-
-    function leaveWebsite() {
-      window.location.replace("https://www.google.com/");
-    }
-
-    document
-      .getElementById("enterButton")
-      .addEventListener("click", enterWebsite);
-
-    document
-      .getElementById("leaveButton")
-      .addEventListener("click", leaveWebsite);
-
-    try {
-      if (localStorage.getItem("naughtyArenaAgeConfirmed") === "yes") {
+      function enterWebsite() {
         ageOverlay.hidden = true;
-        document.body.classList.remove("locked");
-      }
-    } catch (error) {
-      // Keep the age screen visible until the user confirms.
-    }
+        website.hidden = false;
 
-    /*
-      VIDEO THUMBNAILS
-    */
-
-    function createThumbnail(video) {
-      const thumbnail = document.createElement("div");
-      thumbnail.className = "thumbnail";
-
-      if (video.thumbnail && video.thumbnail.trim() !== "") {
-        const img = document.createElement("img");
-
-        img.src = video.thumbnail;
-        img.alt = video.title;
-        img.loading = "lazy";
-
-        img.addEventListener("error", function () {
-          thumbnail.innerHTML = "";
-          thumbnail.appendChild(createPlaceholder());
-        }, { once: true });
-
-        thumbnail.appendChild(img);
-      } else {
-        thumbnail.appendChild(createPlaceholder());
+        window.scrollTo({
+          top: 0,
+          behavior: "instant"
+        });
       }
 
-      return thumbnail;
-    }
+      /*
+       * Connect the ENTER button to the function above.
+       */
 
-    function createPlaceholder() {
-      const placeholder = document.createElement("div");
-      placeholder.className = "placeholder";
+      enterButton.addEventListener("click", enterWebsite);
 
-      const icon = document.createElement("div");
-      icon.className = "play-icon";
-      icon.textContent = "▶";
+      /*
+       * The LEAVE button does not open the website.
+       */
 
-      const label = document.createElement("small");
-      label.textContent = "NAUGHTYARENA";
-
-      placeholder.append(icon, label);
-
-      return placeholder;
-    }
-
-    /*
-      VIDEO CARDS
-    */
-
-    function createVideoCard(video) {
-      const card = document.createElement("article");
-      card.className = "video-card";
-      card.tabIndex = 0;
-      card.setAttribute("role", "button");
-      card.setAttribute("aria-label", "Play " + video.title);
-
-      const thumbnail = createThumbnail(video);
-
-      const info = document.createElement("div");
-      info.className = "video-info";
-
-      const title = document.createElement("h3");
-      title.className = "video-title";
-      title.textContent = video.title;
-
-      const meta = document.createElement("p");
-      meta.className = "video-meta";
-      meta.textContent = "18+ · Watch video";
-
-      info.append(title, meta);
-      card.append(thumbnail, info);
-
-      card.addEventListener("click", function () {
-        playVideo(video);
+      leaveButton.addEventListener("click", function () {
+        ageOverlay.innerHTML = `
+          <div class="age-box">
+            <div class="logo">NaughtyArena</div>
+            <h1>Access unavailable</h1>
+            <p>
+              You must meet the required age to enter this website.
+            </p>
+          </div>
+        `;
       });
 
-      card.addEventListener("keydown", function (event) {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          playVideo(video);
+      /*
+       * Search the video cards.
+       */
+
+      searchInput.addEventListener("input", function () {
+        const searchTerm = searchInput.value
+          .trim()
+          .toLowerCase();
+
+        videoCards.forEach(function (card) {
+          const cardText = (
+            card.innerText + " " +
+            card.dataset.search
+          ).toLowerCase();
+
+          card.hidden = !cardText.includes(searchTerm);
+        });
+      });
+
+      /*
+       * Placeholder video configuration.
+       * Add authorized HTTPS embed URLs here when available.
+       */
+
+      const videoSources = {
+        first: {
+          title: "First Adult Video",
+          url: ""
+        },
+
+        second: {
+          title: "Second Adult Video",
+          url: ""
         }
+      };
+
+      /*
+       * Open the player when a Watch Video button is clicked.
+       */
+
+      document.querySelectorAll(".watch-button").forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+          const selectedVideo = videoSources[button.dataset.video];
+
+          playerSection.hidden = false;
+          playerTitle.textContent = selectedVideo.title;
+
+          if (selectedVideo.url) {
+            videoFrame.src = selectedVideo.url;
+            playerMessage.textContent =
+              "If playback does not work, check that the provider permits embedding.";
+          } else {
+            videoFrame.removeAttribute("src");
+            playerMessage.textContent =
+              "No video embed URL has been added yet. Configure an authorized HTTPS embed URL in videoSources.";
+          }
+
+          playerSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        });
+
       });
 
-      return card;
-    }
+      /*
+       * Close the player and stop playback.
+       */
 
-    /*
-      DISPLAY VIDEO GALLERY
-    */
-
-    function renderVideos() {
-      videoGrid.innerHTML = "";
-
-      const filteredVideos = videos.filter(function (video) {
-        return video.title
-          .toLowerCase()
-          .includes(currentSearch.toLowerCase());
+      closePlayer.addEventListener("click", function () {
+        videoFrame.removeAttribute("src");
+        playerSection.hidden = true;
       });
 
-      filteredVideos.forEach(function (video) {
-        videoGrid.appendChild(createVideoCard(video));
-      });
-
-      videoCount.textContent =
-        filteredVideos.length +
-        (filteredVideos.length === 1 ? " video" : " videos");
-
-      emptyState.style.display =
-        filteredVideos.length === 0 ? "block" : "none";
-
-      message.style.display = "none";
-      message.textContent = "";
-    }
-
-    /*
-      OPEN VIDEO PLAYER
-    */
-
-    function playVideo(video) {
-      if (!video.embedUrl || !video.embedUrl.trim()) {
-        message.textContent =
-          '"' + video.title +
-          '" is a demonstration card. Add its valid embed URL in the videos list to enable playback.';
-
-        message.style.display = "block";
-
-        return;
-      }
-
-      let url;
-
-      try {
-        url = new URL(video.embedUrl);
-      } catch (error) {
-        message.textContent = "This video has an invalid embed URL.";
-        message.style.display = "block";
-        return;
-      }
-
-      if (url.protocol !== "https:") {
-        message.textContent = "Video embed URLs must use HTTPS.";
-        message.style.display = "block";
-        return;
-      }
-
-      videoPlayer.src = url.href;
-      playerTitle.textContent = video.title;
-      playerSection.classList.add("visible");
-
-      message.style.display = "none";
-
-      playerSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-
-    /*
-      CLOSE VIDEO PLAYER
-    */
-
-    document
-      .getElementById("closePlayer")
-      .addEventListener("click", function () {
-        videoPlayer.src = "about:blank";
-        playerSection.classList.remove("visible");
-      });
-
-    /*
-      SEARCH
-    */
-
-    document
-      .getElementById("searchForm")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        currentSearch = searchInput.value.trim();
-        renderVideos();
-      });
-
-    searchInput.addEventListener("input", function () {
-      currentSearch = searchInput.value.trim();
-      renderVideos();
     });
+  </script>
 
-    /*
-      INITIALIZE
-    */
-
-    document
+</body>
+</html>
