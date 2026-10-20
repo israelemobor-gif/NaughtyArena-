@@ -197,25 +197,28 @@
 
     /* EMPTY VIDEO SECTION */
 
-    .empty-videos {
-      margin-top: 22px;
-      padding: 38px 20px;
-      background: var(--surface);
-      border: 1px dashed #454545;
-      border-radius: 10px;
-      text-align: center;
-    }
+    .video-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 25px auto;
+  background: #000;
+  border: 1px solid #303030;
+  border-radius: 8px;
+  overflow: hidden;
+}
 
-    .empty-videos h3 {
-      margin-bottom: 10px;
-      font-size: 21px;
-    }
+.video-container iframe {
+  display: block;
+  width: 100%;
+  height: 450px;
+  border: 0;
+}
 
-    .empty-videos p {
-      color: var(--muted);
-      max-width: 550px;
-      margin: 0 auto;
-    }
+@media (max-width: 600px) {
+  .video-container iframe {
+    height: 250px;
+  }
+}
 
     /* ADVERTISING */
 
@@ -498,25 +501,19 @@
     <!-- VIDEOS -->
 
     <section id="videos">
-      <div class="container">
-
-        <h2 class="section-title">Videos</h2>
-
-        <p class="section-description">
-          Our video section is being prepared. No videos are
-          currently available here.
-        </p>
-
-        <div class="empty-videos">
-
-          <h3>Videos Coming Soon</h3>
-
-          <p>
-            This section will be updated when authorized video
-            content is ready. Please check back later.
-          </p>
-
-        </div>
+      <div class="video-container">
+  <iframe
+    src="https://www.xvideos.com/embedframe/olhiciu5228"
+    title="Embedded video"
+    width="100%"
+    height="400"
+    frameborder="0"
+    scrolling="no"
+    allowfullscreen
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin">
+  </iframe>
+      </div>
 
       </div>
     </section>
