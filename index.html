@@ -4,619 +4,782 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>NaughtyArena</title>
+  <title>NaughtyArena | 18+ Entertainment</title>
+
+  <meta name="description" content="NaughtyArena is an adults-only entertainment website. Visitors must be 18 or older.">
+
+  <meta name="robots" content="index, follow">
+
+  <meta name="theme-color" content="#090909">
 
   <style>
+    :root {
+      --background: #090909;
+      --surface: #151515;
+      --surface-light: #202020;
+      --red: #e50914;
+      --red-dark: #a80009;
+      --text: #ffffff;
+      --muted: #b8b8b8;
+      --border: #303030;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #101010;
-      color: white;
-      min-height: 100vh;
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
-    button, input {
-      font: inherit;
+    body {
+      background: var(--background);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    a {
+      color: #ff4b55;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ffffff;
     }
 
     button {
-      cursor: pointer;
+      font: inherit;
     }
 
-    [hidden] {
-      display: none !important;
-    }
-
-    /* AGE VERIFICATION SCREEN */
-
-    #ageOverlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background:
-        radial-gradient(circle at top, #452020, transparent 55%),
-        #090909;
-      text-align: center;
-    }
-
-    .age-box {
-      width: 100%;
-      max-width: 440px;
-      padding: 35px 24px;
-      border: 1px solid #633333;
-      border-radius: 16px;
-      background: #171717;
-      box-shadow: 0 15px 50px #000;
-    }
-
-    .logo {
-      color: #ff4242;
-      font-size: 34px;
-      font-weight: 900;
-      margin-bottom: 18px;
-    }
-
-    .age-box h1 {
-      font-size: 25px;
-      margin-bottom: 15px;
-    }
-
-    .age-box p {
-      color: #ccc;
-      line-height: 1.7;
-      margin-bottom: 25px;
-    }
-
-    .enter-button {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 8px;
-      background: #e52336;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-      transition: background 0.2s;
-    }
-
-    .enter-button:hover {
-      background: #ff394c;
-    }
-
-    .leave-button {
-      display: block;
-      width: 100%;
-      padding: 13px;
-      margin-top: 12px;
-      border: 1px solid #555;
-      border-radius: 8px;
-      background: transparent;
-      color: white;
-    }
-
-    .age-note {
-      font-size: 12px;
-      margin-top: 20px;
-      color: #888;
-    }
-
-    /* MAIN WEBSITE */
-
-    header {
-      padding: 20px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      background: #191919;
-      border-bottom: 1px solid #303030;
-    }
-
-    .site-logo {
-      font-size: 27px;
-      font-weight: 900;
-      color: #ff4242;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 16px;
-      font-size: 14px;
-    }
-
-    .hero {
-      padding: 55px 6% 35px;
-      text-align: center;
-      background: linear-gradient(135deg, #301313, #151515);
-    }
-
-    .hero h1 {
-      font-size: clamp(28px, 6vw, 43px);
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      color: #ccc;
-      line-height: 1.7;
-    }
-
-    .search-area {
-      padding: 25px 6%;
-      max-width: 750px;
+    .container {
+      width: min(1100px, 92%);
       margin: auto;
     }
 
-    #searchInput {
-      width: 100%;
-      padding: 15px;
-      color: white;
-      background: #202020;
-      border: 1px solid #444;
-      border-radius: 8px;
-      outline: none;
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #101010;
+      border-bottom: 2px solid var(--red);
     }
 
-    #searchInput:focus {
-      border-color: #ff4242;
-    }
-
-    main {
-      padding: 10px 6% 50px;
-    }
-
-    .section-title {
-      margin-bottom: 22px;
-      font-size: 24px;
-    }
-
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(min(100%, 260px), 1fr)
-      );
-      gap: 22px;
-    }
-
-    .video-card {
-      overflow: hidden;
-      background: #1c1c1c;
-      border: 1px solid #333;
-      border-radius: 10px;
-    }
-
-    .video-thumbnail {
-      min-height: 170px;
+    .header-content {
+      min-height: 72px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #3b1717, #222);
-      color: #ff5555;
-      font-size: 45px;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding: 12px 0;
     }
 
-    .video-info {
-      padding: 18px;
+    .logo {
+      color: #ffffff;
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -1px;
     }
 
-    .video-info h3 {
-      margin-bottom: 10px;
+    .logo span {
+      color: var(--red);
     }
 
-    .video-info p {
-      margin-bottom: 15px;
-      color: #aaa;
-      font-size: 14px;
-      line-height: 1.6;
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
     }
 
-    .watch-button {
-      width: 100%;
-      padding: 12px;
-      background: #e52336;
-      border: none;
-      border-radius: 6px;
-      color: white;
+    nav a {
+      color: #eeeeee;
+      font-size: 13px;
       font-weight: bold;
     }
 
-    #playerSection {
-      margin-top: 35px;
-      padding: 20px;
-      background: #1c1c1c;
-      border-radius: 10px;
+    nav a:hover {
+      color: var(--red);
     }
 
-    #playerSection h2 {
+    /* GENERAL SECTIONS */
+
+    section {
+      padding: 38px 0;
+    }
+
+    .section-title {
+      font-size: clamp(23px, 4vw, 32px);
+      margin-bottom: 12px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    /* HOME */
+
+    .hero {
+      min-height: 390px;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(
+          ellipse at top right,
+          rgba(229, 9, 20, 0.18),
+          transparent 55%
+        ),
+        var(--background);
+    }
+
+    .hero-content {
+      padding: 50px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--red);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
       margin-bottom: 18px;
     }
 
-    #videoFrame {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: none;
-      background: black;
+    .hero h1 {
+      font-size: clamp(34px, 7vw, 58px);
+      line-height: 1.1;
+      margin-bottom: 18px;
     }
 
-    .player-message {
-      margin-top: 12px;
-      color: #bbb;
-      line-height: 1.6;
-      font-size: 13px;
+    .hero h1 span {
+      color: var(--red);
     }
 
-    .close-player {
-      padding: 10px 16px;
-      margin-top: 12px;
-      background: #333;
-      color: white;
+    .hero p {
+      color: var(--muted);
+      max-width: 650px;
+      margin-bottom: 24px;
+    }
+
+    .button {
+      display: inline-block;
       border: none;
+      background: var(--red);
+      color: #ffffff;
+      padding: 12px 22px;
       border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    .empty-message {
-      color: #bbb;
-      padding: 20px 0;
+    .button:hover {
+      background: var(--red-dark);
+      color: #ffffff;
     }
+
+    .button-secondary {
+      background: var(--surface-light);
+      border: 1px solid var(--border);
+    }
+
+    /* EMPTY VIDEO SECTION */
+
+    .empty-videos {
+      margin-top: 22px;
+      padding: 38px 20px;
+      background: var(--surface);
+      border: 1px dashed #454545;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .empty-videos h3 {
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .empty-videos p {
+      color: var(--muted);
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    /* ADVERTISING */
+
+    .advertising-box {
+      margin-top: 20px;
+      min-height: 140px;
+      padding: 25px;
+      background: var(--surface);
+      border: 1px dashed #454545;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .advertising-box p {
+      color: var(--muted);
+    }
+
+    /* POLICY CARDS */
+
+    .legal-card {
+      margin-top: 18px;
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .legal-card h3 {
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .legal-card h3:first-child {
+      margin-top: 0;
+    }
+
+    .legal-card p {
+      color: #cccccc;
+      margin-bottom: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .legal-card ul {
+      color: #cccccc;
+      padding-left: 22px;
+      margin-bottom: 14px;
+    }
+
+    /* FOOTER */
 
     footer {
-      padding: 30px 6%;
-      background: #191919;
-      border-top: 1px solid #333;
-      color: #aaa;
+      margin-top: 35px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      background: #101010;
       text-align: center;
-      line-height: 2;
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 5px 0;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 12px 0;
       font-size: 13px;
     }
 
-    footer a {
-      color: #ff6666;
-      text-decoration: none;
-      margin: 0 8px;
+    /* AGE CONFIRMATION */
+
+    .age-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.97);
     }
 
-    @media (max-width: 480px) {
-      header {
+    .age-box {
+      width: min(440px, 100%);
+      padding: 32px 24px;
+      background: #151515;
+      border: 2px solid var(--red);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .age-logo {
+      font-size: 30px;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+
+    .age-logo span {
+      color: var(--red);
+    }
+
+    .age-box h2 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .age-box p {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .age-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .age-buttons button {
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .age-warning {
+      display: block;
+      color: #999999;
+      font-size: 11px;
+      margin-top: 18px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 650px) {
+      .header-content {
         justify-content: center;
+      }
+
+      .logo {
+        width: 100%;
         text-align: center;
       }
 
+      nav {
+        justify-content: center;
+        gap: 12px;
+      }
+
       nav a {
-        margin: 0 7px;
+        font-size: 12px;
+      }
+
+      .hero {
+        min-height: 330px;
+      }
+
+      .legal-card {
+        padding: 18px;
       }
     }
   </style>
 </head>
 
-<body>
+<body class="no-scroll">
 
-  <!-- AGE CONFIRMATION SCREEN -->
+  <!-- AGE CONFIRMATION -->
 
-  <section id="ageOverlay" aria-labelledby="ageTitle">
+  <div
+    id="ageOverlay"
+    class="age-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="ageTitle"
+  >
     <div class="age-box">
 
-      <div class="logo">NaughtyArena</div>
-
-      <h1 id="ageTitle">Adults Only — 18+</h1>
-
-      <p>
-        This website is intended exclusively for adults aged 18
-        and over, or the applicable age of majority in their
-        location. By continuing, you confirm that you meet
-        the required age.
-      </p>
-
-      <button
-        id="enterButton"
-        class="enter-button"
-        type="button">
-        I'm 18+ — Enter
-      </button>
-
-      <button
-        id="leaveButton"
-        class="leave-button"
-        type="button">
-        I'm under 18 — Leave
-      </button>
-
-      <div class="age-note">
-        Age confirmation is not a substitute for formal age verification.
+      <div class="age-logo">
+        Naughty<span>Arena</span>
       </div>
 
-    </div>
-  </section>
-
-
-  <!-- MAIN WEBSITE: HIDDEN UNTIL THE BUTTON IS CLICKED -->
-
-  <div id="website" hidden>
-
-    <header>
-      <div class="site-logo">NaughtyArena</div>
-
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#videos">Videos</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-
-    <section class="hero" id="home">
-      <h1>Welcome to NaughtyArena</h1>
+      <h2 id="ageTitle">Adults Only — 18+</h2>
 
       <p>
-        Discover your content library in one place.
+        This website is intended only for adults who are at least
+        18 years old or the legal age of majority in their location,
+        whichever is higher.
       </p>
-    </section>
 
+      <p>
+        Please confirm your age before continuing.
+      </p>
 
-    <section class="search-area">
-      <input
-        type="search"
-        id="searchInput"
-        placeholder="Search videos..."
-        aria-label="Search videos">
-    </section>
-
-
-    <main id="videos">
-
-      <h2 class="section-title">Featured Videos</h2>
-
-      <div class="video-grid" id="videoGrid">
-
-        <article
-          class="video-card"
-          data-search="first adult video">
-
-          <div class="video-thumbnail">▶</div>
-
-          <div class="video-info">
-            <h3>First Adult Video</h3>
-
-            <p>
-              Replace this placeholder with a title and an
-              authorized video embed.
-            </p>
-
-            <button
-              class="watch-button"
-              type="button"
-              data-video="first">
-              Watch Video
-            </button>
-          </div>
-        </article>
-
-
-        <article
-          class="video-card"
-          data-search="second adult video">
-
-          <div class="video-thumbnail">▶</div>
-
-          <div class="video-info">
-            <h3>Second Adult Video</h3>
-
-            <p>
-              Replace this placeholder with another title and
-              an authorized video embed.
-            </p>
-
-            <button
-              class="watch-button"
-              type="button"
-              data-video="second">
-              Watch Video
-            </button>
-          </div>
-        </article>
-
-      </div>
-
-
-      <section id="playerSection" hidden>
-
-        <h2 id="playerTitle">Video Player</h2>
-
-        <iframe
-          id="videoFrame"
-          title="Video player"
-          allowfullscreen
-          referrerpolicy="strict-origin-when-cross-origin">
-        </iframe>
-
-        <p class="player-message" id="playerMessage">
-          The selected video will appear here when a valid,
-          authorized embed URL is configured.
-        </p>
+      <div class="age-buttons">
 
         <button
-          id="closePlayer"
-          class="close-player"
-          type="button">
-          Close Player
+          class="button"
+          id="confirmAge"
+          type="button"
+        >
+          I am 18+
         </button>
 
-      </section>
+        <button
+          class="button button-secondary"
+          id="leaveSite"
+          type="button"
+        >
+          Leave Site
+        </button>
 
-    </main>
+      </div>
 
+      <small class="age-warning">
+        This is a self-declaration prompt, not formal age verification.
+      </small>
 
-    <footer id="about">
-      <p>
-        NaughtyArena — Adults only.
-      </p>
-
-      <p>
-        Only publish lawful content featuring consenting adults
-        and use video embeds you are authorized to share.
-      </p>
-
-      <p id="contact">
-        <a href="mailto:contact@example.com">Contact</a>
-        <a href="#about">About</a>
-        <a href="#home">Back to top</a>
-      </p>
-
-    </footer>
-
+    </div>
   </div>
 
+  <!-- HEADER -->
 
-  <!-- JAVASCRIPT -->
+  <header>
+    <div class="container header-content">
+
+      <a href="#home" class="logo">
+        Naughty<span>Arena</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#videos">Videos</a>
+        <a href="#advertising">Advertising</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#copyright">Copyright</a>
+        <a href="#terms">Terms</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+
+    <section id="home" class="hero">
+      <div class="container hero-content">
+
+        <span class="badge">18+ ADULTS ONLY</span>
+
+        <h1>
+          Welcome to<br>
+          <span>NaughtyArena</span>
+        </h1>
+
+        <p>
+          Welcome to NaughtyArena, an adults-only entertainment
+          website. This website is being prepared for its future
+          content and features.
+        </p>
+
+        <a href="#videos" class="button">
+          Explore Website
+        </a>
+
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+
+    <section id="videos">
+      <div class="container">
+
+        <h2 class="section-title">Videos</h2>
+
+        <p class="section-description">
+          Our video section is being prepared. No videos are
+          currently available here.
+        </p>
+
+        <div class="empty-videos">
+
+          <h3>Videos Coming Soon</h3>
+
+          <p>
+            This section will be updated when authorized video
+            content is ready. Please check back later.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ADVERTISING -->
+
+    <section id="advertising">
+      <div class="container">
+
+        <h2 class="section-title">Advertising</h2>
+
+        <p class="section-description">
+          This section is reserved for future advertising
+          integrations.
+        </p>
+
+        <div class="advertising-box">
+          <p>
+            Advertising space<br>
+            <strong>Not currently active</strong>
+          </p>
+        </div>
+
+        <p class="section-description" style="margin-top: 15px;">
+          Advertising will be added only after the website meets
+          the advertising provider's requirements and is approved.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- PRIVACY POLICY -->
+
+    <section id="privacy">
+      <div class="container">
+
+        <h2 class="section-title">Privacy Policy</h2>
+
+        <div class="legal-card">
+
+          <p>
+            This page provides a starting privacy policy for
+            NaughtyArena. It must be reviewed and updated to reflect
+            the actual services, data collection, cookies, and
+            advertising technologies used on this website.
+          </p>
+
+          <h3>Information You Provide</h3>
+
+          <p>
+            If you contact us by email, we may receive the
+            information you include in your message and use it
+            to respond.
+          </p>
+
+          <h3>Cookies and Advertising</h3>
+
+          <p>
+            Future advertising or third-party services may use
+            cookies or similar technologies. This policy must be
+            updated before those services are activated to explain
+            what information they collect and how it is used.
+          </p>
+
+          <h3>Third-Party Websites</h3>
+
+          <p>
+            Links or embedded content from other websites may be
+            governed by those websites' own privacy policies.
+          </p>
+
+          <h3>Contact</h3>
+
+          <p>
+            For privacy questions, contact us using the email
+            address listed in the Contact section below.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- COPYRIGHT POLICY -->
+
+    <section id="copyright">
+      <div class="container">
+
+        <h2 class="section-title">Copyright Policy</h2>
+
+        <div class="legal-card">
+
+          <p>
+            NaughtyArena respects copyright and intends to publish
+            or embed only content it is authorized to use.
+          </p>
+
+          <h3>Reporting Copyright Concerns</h3>
+
+          <p>
+            If you believe material on this website infringes your
+            copyright, contact us using the email address in the
+            Contact section. Include the page address, a description
+            of the material, an explanation of your rights, and
+            sufficient information for us to review your complaint.
+          </p>
+
+          <h3>Review of Reports</h3>
+
+          <p>
+            We will review complaints and take appropriate action
+            where warranted, which may include removing material
+            or disabling access to it.
+          </p>
+
+          <p>
+            A copyright policy does not itself grant permission to
+            use third-party content. All content must be used
+            lawfully and with the necessary authorization.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TERMS -->
+
+    <section id="terms">
+      <div class="container">
+
+        <h2 class="section-title">Terms of Use</h2>
+
+        <div class="legal-card">
+
+          <h3>Adults Only</h3>
+
+          <p>
+            This website is intended only for people who are at
+            least 18 years old or the legal age of majority in
+            their location, whichever is higher. The age prompt
+            is not formal age verification.
+          </p>
+
+          <h3>Lawful Content</h3>
+
+          <p>
+            Content must be lawful, involve consenting adults,
+            and be published or embedded only with the necessary
+            permissions.
+          </p>
+
+          <h3>Third-Party Services</h3>
+
+          <p>
+            Future videos, advertisements, or external links may
+            be provided by third parties and may be subject to
+            their own terms and policies.
+          </p>
+
+          <h3>Changes</h3>
+
+          <p>
+            These terms must be reviewed and updated as the
+            website's features and services develop.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+      <div class="container">
+
+        <h2 class="section-title">Contact Us</h2>
+
+        <div class="legal-card">
+
+          <p>
+            For general questions, privacy concerns, or copyright
+            complaints, contact the website administrator by email.
+          </p>
+
+          <p>
+            Contact email:
+            <a href="naughtyarena66@gmail.com">
+              YOUR-GMAIL@gmail.com
+            </a>
+          </p>
+
+          <p>
+            Replace the example email above with your real Gmail
+            address before publishing.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <div class="container">
+
+      <div class="logo">
+        Naughty<span>Arena</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="#privacy">Privacy</a>
+        <a href="#copyright">Copyright</a>
+        <a href="#terms">Terms</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <p>
+        Adults only. Access is restricted to eligible adults.
+      </p>
+
+      <p>
+        &copy; <span id="currentYear"></span> NaughtyArena.
+        All rights reserved.
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- PAGE JAVASCRIPT -->
 
   <script>
-    "use strict";
+    const ageOverlay = document.getElementById("ageOverlay");
+    const confirmAge = document.getElementById("confirmAge");
+    const leaveSite = document.getElementById("leaveSite");
 
-    document.addEventListener("DOMContentLoaded", function () {
+    function unlockSite() {
+      ageOverlay.classList.add("hidden");
+      document.body.classList.remove("no-scroll");
+    }
 
-      const ageOverlay = document.getElementById("ageOverlay");
-      const website = document.getElementById("website");
-      const enterButton = document.getElementById("enterButton");
-      const leaveButton = document.getElementById("leaveButton");
-
-      const searchInput = document.getElementById("searchInput");
-      const videoCards = document.querySelectorAll(".video-card");
-
-      const playerSection = document.getElementById("playerSection");
-      const playerTitle = document.getElementById("playerTitle");
-      const videoFrame = document.getElementById("videoFrame");
-      const playerMessage = document.getElementById("playerMessage");
-      const closePlayer = document.getElementById("closePlayer");
-
-      /*
-       * IMPORTANT:
-       * This is the function that makes the age button work.
-       * It hides the age screen and reveals the homepage.
-       */
-
-      function enterWebsite() {
-        ageOverlay.hidden = true;
-        website.hidden = false;
-
-        window.scrollTo({
-          top: 0,
-          behavior: "instant"
-        });
-      }
-
-      /*
-       * Connect the ENTER button to the function above.
-       */
-
-      enterButton.addEventListener("click", enterWebsite);
-
-      /*
-       * The LEAVE button does not open the website.
-       */
-
-      leaveButton.addEventListener("click", function () {
-        ageOverlay.innerHTML = `
-          <div class="age-box">
-            <div class="logo">NaughtyArena</div>
-            <h1>Access unavailable</h1>
-            <p>
-              You must meet the required age to enter this website.
-            </p>
-          </div>
-        `;
-      });
-
-      /*
-       * Search the video cards.
-       */
-
-      searchInput.addEventListener("input", function () {
-        const searchTerm = searchInput.value
-          .trim()
-          .toLowerCase();
-
-        videoCards.forEach(function (card) {
-          const cardText = (
-            card.innerText + " " +
-            card.dataset.search
-          ).toLowerCase();
-
-          card.hidden = !cardText.includes(searchTerm);
-        });
-      });
-
-      /*
-       * Placeholder video configuration.
-       * Add authorized HTTPS embed URLs here when available.
-       */
-
-      const videoSources = {
-        first: {
-          title: "BUSTY STUDENT GETS HER WET CREAMY PUSSY FUCKED SO HARD BY HER TEACHER",
-          url: "https://www.xvideos.com/embedframe/omekiom0c25"
-        },
-
-        second: {
-          title: "Second Adult Video",
-          url: ""
-        }
-      };
-
-      /*
-       * Open the player when a Watch Video button is clicked.
-       */
-
-      document.querySelectorAll(".watch-button").forEach(function (button) {
-
-        button.addEventListener("click", function () {
-
-          const selectedVideo = videoSources[button.dataset.video];
-
-          playerSection.hidden = false;
-          playerTitle.textContent = selectedVideo.title;
-
-          if (selectedVideo.url) {
-            videoFrame.src = selectedVideo.url;
-            playerMessage.textContent =
-              "If playback does not work, check that the provider permits embedding.";
-          } else {
-            videoFrame.removeAttribute("src");
-            playerMessage.textContent =
-              "No video embed URL has been added yet. Configure an authorized HTTPS embed URL in videoSources.";
-          }
-
-          playerSection.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-
-        });
-
-      });
-
-      /*
-       * Close the player and stop playback.
-       */
-
-      closePlayer.addEventListener("click", function () {
-        videoFrame.removeAttribute("src");
-        playerSection.hidden = true;
-      });
-
+    confirmAge.addEventListener("click", function () {
+      unlockSite();
     });
+
+    leaveSite.addEventListener("click", function () {
+      ageOverlay.innerHTML = `
+        <div class="age-box">
+          <h2>Access Restricted</h2>
+          <p>
+            You have chosen not to enter this adults-only website.
+          </p>
+        </div>
+      `;
+    });
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
   </script>
 
 </body>
-      </html>
+  </html>
